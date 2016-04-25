@@ -28,8 +28,8 @@ export function removeClass(ele,className){
 };
 
 export function hasClass(ele,className){
-	let classArr = ele.classList;
-	return classArr.contains(className)
+	let classArr = ele.classList||[];
+	return classArr.length ? classArr.contains(className):false
 };
 
 export function removeSiblingsClass(ele,className){
@@ -39,19 +39,4 @@ export function removeSiblingsClass(ele,className){
 		removeClass(arr[i],className)
 	}
 	addClass(ele,className);
-};
-
-/**
- * 判断是够出界
- */
-
-export function isOutside(parent,child) {
-	let pEle = child.parentNode;
-	while (pEle !== null) {
-		if(pEle === parent){
-			return true
-		}
-		pEle = pEle.parentNode;
-	}
-	return false
 };

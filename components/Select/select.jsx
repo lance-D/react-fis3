@@ -7,7 +7,7 @@ import classnames from "classnames";
 import Button from "../Button/button";
 import Icon from "../Icon/icon";
 import {formatData} from "../Utils/array";
-import {addClass,removeClass,removeSiblingsClass,isOutside} from "../Utils/dom";
+import {addClass,removeClass,removeSiblingsClass} from "../Utils/dom";
 import {on} from "../Utils/events";
 
 
