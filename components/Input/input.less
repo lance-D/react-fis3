@@ -1,0 +1,54 @@
+@import  "../common/variables.less";
+@import  "../common/vender.less";
+
+.input_item {
+	position: relative;
+	display: inline-block;
+	line-height: 1;
+	font-size: @fs-14;
+	color: @fc-5;
+}
+.input {
+    position: relative;
+	font-size: @fs-14;
+	line-height: @input-lh;
+	height: @input-h;
+	width: 100%;
+    z-index: 1;
+    padding-right: 13px;
+    padding-left: 13px;
+    vertical-align: middle;
+    color: #333;
+	border: 1px solid @input-border-color;
+    border-radius: 2px;
+	background-color: @white;
+    outline: 0;
+    &:focus {
+        border-color: @green;
+    }
+    &_warning {
+        border-color: @red;
+    }
+}
+.input_group {
+	position: relative;
+	overflow: hidden;
+    &:after {
+        clear: both;
+        _overflow: hidden;
+    }
+    .input_item {
+        float: left;
+		.input {
+			border-top-right-radius: 0;
+			border-bottom-right-radius: 0;
+			border-right: none;
+		}
+    }
+	.btn {
+		height: @input-btn-h;
+		line-height: @input-btn-h;
+		border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+	}
+}

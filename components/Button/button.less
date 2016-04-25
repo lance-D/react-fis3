@@ -1,0 +1,118 @@
+@import "../common/variables.less";
+@import "../common/vender.less";
+.btn {
+    font-size: @fs-14;
+    line-height: @btn-h;
+    display: inline-block;
+    height: @btn-h;
+    padding: 0 30px;
+    text-align: center;
+    text-decoration: none;
+    color: @gray;
+    background-color: @white;
+    border: 1px solid @gray;
+    *border: 1px solid transparent; //解决IE 7下1px黑边
+    outline: 0;
+	border-radius: 2px;
+	vertical-align: middle;
+    .transition(.05s linear);
+    &:hover, &.btn_active {
+        text-decoration: none;
+        color: @white;
+        background-color: @gray;
+		border-color: @gray;
+    }
+    &.btn_link {
+        color: @green;
+        border-color: transparent;
+        background-color: transparent;
+    }
+    &.btn_outline {
+        color: @green;
+        background-color: transparent;
+    }
+	&.sm {
+		height: @btn-h-sm;
+		line-height: @btn-h-sm;
+	}
+	&.lg {
+		height: @btn-h-lg;
+		line-height: @btn-h-lg;
+	}
+    &_block {
+        display: block;
+        width: 100%;
+        padding: 0;
+    }
+	&[disabled]{
+		color: @white;
+	    border-color: @gray;
+	    background-color: @gray;
+		cursor: not-allowed;
+		&:hover {
+	        color: @white;
+	        border-color: @gray;
+	        background-color: @gray;
+	    }
+	}
+	i[class^="icon"] {
+		vertical-align: middle;
+		padding-right: 3px;
+	}
+}
+.btn_green {
+    color: @green;
+    border-color: @green;
+    background-color: @white;
+    &:hover,
+    &.btn_active {
+        color: @white;
+        border-color: @green;
+        background-color: @green;
+    }
+    &.btn_link {
+        color: @green;
+        border-color: transparent;
+        background-color: transparent;
+    }
+    &.btn_outline {
+        color: @green;
+        background-color: transparent;
+    }
+}
+.btn_red {
+    color: @red;
+    border-color: @red;
+    background-color: @white;
+    &:hover,
+    &.btn_active {
+        color: @white;
+		border-color: @red;
+        background-color: @red;
+    }
+    &.btn_link {
+        color: @red;
+        border-color: transparent;
+        background-color: transparent;
+    }
+    &.btn_outline {
+        color: @red;
+        background-color: transparent;
+    }
+}
+// .btn_disabled {
+//     color: @white;
+//     border-color: @gray;
+//     background-color: @gray;
+// 	cursor: not-allowed;
+//     &:hover {
+//         cursor: default;
+//         color: @white;
+//         border-color: @gray;
+//         background-color: @gray;
+//     }
+//     &.btn_outline {
+//         color: @gray;
+//         background-color: transparent;
+//     }
+// }
