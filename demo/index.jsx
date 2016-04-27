@@ -1,9 +1,9 @@
 'use strict';
 
-import React from 'react';
+import React from "react";
 import ReactDOM from 'react-dom';
 
-import { Button,Radiogroup,Checkbox,Checkboxgroup,Icon,Input,Inputgroup,Select} from  '../components/main'
+import { Button,Radiogroup,Checkbox,Checkboxgroup,Icon,Input,Inputgroup,Select,Datepicker} from  '../components/main'
 let handleClick =  function(){
 	// handle click
 	console.log('回调函数');
@@ -86,6 +86,11 @@ ReactDOM.render(
 		<div className="item clearfix">
 			<Select icon="arrow-down" data={['选项一','选项二','选项三','选项四','选项五','选项六','选项七']} className="demo_item fl" placeholder="单项选择" defaultValue=""/>
 			<Select icon="arrow-down" data={['选项一','选项二','选项三','选项四','选项五','选项六','选项七']} mult className="demo_item fl" placeholder="多项选择" defaultValue="" onSelected={hanleSelected}/>
+		</div>
+		<h2>时间日期选框</h2>
+		<div className="item clearfix">
+			<Datepicker style={{width:"365px"}} type="date"  className="demo_item fl" placeholder="请选择日期"/>
+			<Datepicker style={{width:"365px"}} className="demo_item fl" placeholder="请选择日期时间" step="30" timeStart="9" timeEnd="19" />
 		</div>
 	</div>,
 	document.getElementById('container')

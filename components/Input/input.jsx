@@ -3,6 +3,7 @@ require('./input.less');
 require('../common/errtips.less');
 import React from "react";
 import classnames from "classnames";
+import Icon from "../Icon/icon";
 import {checkMail,checkPhone,checkPwd,checkEmpty} from "../Utils/valid";
 import {afterErrTips} from "../Utils/errTips";
 import {addClass,removeClass} from "../Utils/dom";
@@ -55,8 +56,8 @@ class Input extends React.Component {
 	 * 隐藏错误提示，并将输入框重置
 	 */
 	hideErrTips(ele){
-		let nextEle = ele.nextSibling;
-		if(nextEle && nextEle.getAttribute('class') === 'error_tips'){
+		let nextEle = ele.nextElementSibling;
+		if(nextEle && nextEle.className == 'error_tips'){
 			nextEle.style.maxHeight = '0';
 			removeClass(ele,'input_warning')
 		}
@@ -104,7 +105,7 @@ class Input extends React.Component {
 
 	render(){
 		let className = classnames(this.props.className,'input_item');
-		let { style,required,...others } = this.props;
+		let {style,required,...others} = this.props;
 		return (
 			<label style={this.props.style} className ={className}>
 				{this.props.text}
@@ -114,6 +115,7 @@ class Input extends React.Component {
 					onFocus= {this.handleFocus.bind(this)}
 					onChange = {this.handleChange.bind(this)}
 				/>
+				{this.props.icon?<Icon icon={this.props.icon}/>:''}
 				{this.props.children}
 			</label>
 		)

@@ -10,6 +10,6 @@ import Icon from "./Icon/icon";
 import Input from "./Input/input"
 import Inputgroup from "./Input-Group/inputgroup"
 import Select from "./Select/select";
+import Datepicker from "./Datepicker/datepicker";
 
-
-export { Button,Radiogroup,Checkbox,Checkboxgroup,Icon,Input,Inputgroup,Select};
+export { Button,Radiogroup,Checkbox,Checkboxgroup,Icon,Input,Inputgroup,Select,Datepicker};
