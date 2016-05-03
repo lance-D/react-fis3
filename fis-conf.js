@@ -37,23 +37,20 @@ fis.match('*.{js,jsx}', {
      	fis.plugin('js-require-css')
     ]
 })
-// 合并css
-fis.match('*.{less,css}', {
-  packTo: '/pkg/baseUI.css'
-});
 
-// fis.match('::package', {
-//     packager: fis.plugin('map', {
-//         'pkg/vendor.js': [
-//             'node_modules/react/react.js',
-//             'node_modules/react-dom/index.js',
-//             'node_modules/classnames/index.js'
-//         ],
-//         'pkg/baseUI.js': [
-//             'components/**/*.jsx'
-//         ]
-//     })
-// });
+fis.match('::package', {
+    packager: fis.plugin('map', {
+        'pkg/vendor.js': [
+            'node_modules/**.js'
+        ],
+        'pkg/lagouUI.js': [
+            'modules/**.jsx'
+        ],
+		'/pkg/lagouUI.css':[
+			'modules/**.less'
+		]
+    })
+});
 
 fis.match('::package', {
 	// 本项目为纯前段项目，所以用 loader 编译器加载，

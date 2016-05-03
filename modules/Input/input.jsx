@@ -109,7 +109,7 @@ class Input extends React.Component {
 		let {style,required,...others} = this.props;
 		return (
 			<label style={this.props.style} className ={className}>
-				{this.props.text}
+				{this.props.text?<span className='input_label'>{this.props.text}</span>:''}
 				<input {...others}
 					className='input'
 					onBlur= {this.handleBlur.bind(this)}

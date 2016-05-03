@@ -64,10 +64,10 @@ class Confirm extends React.Component {
 		let containerClass = classnames('confirm_container',this.props.className,this.state.show?'open':'');
 		let confirmBtnHtml = this.getConfirmBtnHtml();
 		return (
-			<div className={containerClass} >
+			<div className={containerClass} style={this.props.style}>
 				{confirmBtnHtml}
 				<div className='confirm_mask' style={{display:this.state.show?'block':'none'}} onClick={this.clickOutClose.bind(this)}></div>
-				<div ref='confirm' className='confirm' >
+				<div className='confirm' >
 					<Icon icon='close' onClick={this.handleCancel.bind(this)}/>
 					{this.props.title ? <div className='confirm_header'>{this.props.title}</div>:''}
 					<div className='confirm_body'>

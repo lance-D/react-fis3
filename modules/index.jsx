@@ -3,7 +3,7 @@
 import React from "react";
 import ReactDOM from 'react-dom';
 
-import { Button,Radiogroup,Checkbox,Checkboxgroup,Icon,Input,Inputgroup,Select,Datepicker,Confirm} from  './main'
+import { Button,Radiogroup,Checkbox,Checkboxgroup,Icon,Input,Inputgroup,Select,Datepicker,Confirm,Modal} from  './main'
 let handleClick =  function(){
 	// handle click
 	console.log('回调函数');
@@ -101,11 +101,29 @@ ReactDOM.render(
 			<Confirm text="这是一个确认框，确认框带title,触发元素为text(默认)" className="demo_item" title="确认信息" btnTpl="点击弹出确认框" handleOK={handleOK} clickOutClose />
 			<Confirm text="这是一个确认框，确认框但不带标题,修改btnType来触发确认框,如icon，btn" className="demo_item" btnType="icon" btnTpl="candidate" handleOK={handleOK}/>
 		</div>
+		<h2>模态框</h2>
+		<div className="item clearfix">
+			<Modal title="模态框标题" btnTpl="模态框">
+				这里放模态框内容
+			</Modal>
+		</div>
 		<h2>组件嵌套</h2>
 		<div className="item clearfix">
 			<Confirm className="demo_item" title="确认信息" btnTpl="弹出框(确认框嵌入下拉框)" handleOK={handleOK} >
 				<Select icon="arrow-down" data={['选项一','选项二','选项三','选项四','选项五','选项六','选项七']} className="demo_item" placeholder="单项选择" defaultValue=""/>
 			</Confirm>
+			<Modal title="模态框标题" btnTpl="模态框">
+				<h4>输入框</h4>
+				<Input style={{width:"300px"}} text="姓名" placeholder="请输入姓名" />
+				<h4>输入框组</h4>
+				<Inputgroup type="search" icon="search" width="400px" placeholder="请输入搜索的内容"/>
+			</Modal>
+			<Modal title="模态框标题" btnTpl="模态框2" btnType="btn btn_green btn_active" style={{marginLeft:"50px"}}>
+				<h4>下拉框组</h4>
+				<Select style={{width:"300px"}} icon="arrow-down" data={['选项一','选项二','选项三','选项四','选项五','选项六','选项七']} placeholder="单项选择" defaultValue=""/>
+				<h4>时间日期选框</h4>
+				<Datepicker style={{width:"365px"}} type="date" placeholder="请选择日期"/>
+			</Modal>
 		</div>
 	</div>,
 	document.getElementById('container')
