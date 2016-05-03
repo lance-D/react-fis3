@@ -1,6 +1,7 @@
 'use strict';
-require('./input.less');
-require('../common/errtips.less');
+
+import "./input.less";
+import "../common/errtips.less";
 import React from "react";
 import classnames from "classnames";
 import Icon from "../Icon/icon";

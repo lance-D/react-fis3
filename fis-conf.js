@@ -1,12 +1,12 @@
-fis.set('project.files', '/index.html'); // 按需编译。
+fis.set('project.files', '/demo/index.html'); // 按需编译。
 
 // 采用 commonjs 模块化方案。
 fis.hook('commonjs', {
-	baseUrl: './components',
+	baseUrl: './modules',
 	extList: ['.js', '.jsx']
 });
 
-fis.match('{/{components,demo}/**.js,*.jsx}', {
+fis.match('{/{modules}/**.js,*.jsx}', {
 	// parser: fis.plugin('typescript'),
 	parser: fis.plugin('babel-5.x', {
 	    sourceMaps: false,
@@ -20,7 +20,7 @@ fis.unhook('components');
 fis.hook('node_modules');
 
 // 设置成是模块化 js
-fis.match('/{node_modules,components,demo}/**.{js,jsx}', {
+fis.match('/{node_modules,modules}/**.{js,jsx}', {
 	isMod: true
 });
 
@@ -31,7 +31,7 @@ fis.match('*.less', {
 });
 
 // js jsx import css  img
-fis.match('/{components,demo}/**.{js,jsx}', {
+fis.match('*.{js,jsx}', {
 	preprocessor: [
      	fis.plugin('js-require-file'),
      	fis.plugin('js-require-css')
@@ -42,18 +42,18 @@ fis.match('*.{less,css}', {
   packTo: '/pkg/baseUI.css'
 });
 
-fis.media('qa').match('::package', {
-    packager: fis.plugin('map', {
-        'pkg/vendor.js': [
-            'node_modules/react/react.js',
-            'node_modules/react-dom/index.js',
-            'node_modules/classnames/index.js'
-        ],
-        'pkg/baseUI.js': [
-            'components/**/*.jsx'
-        ]
-    })
-});
+// fis.match('::package', {
+//     packager: fis.plugin('map', {
+//         'pkg/vendor.js': [
+//             'node_modules/react/react.js',
+//             'node_modules/react-dom/index.js',
+//             'node_modules/classnames/index.js'
+//         ],
+//         'pkg/baseUI.js': [
+//             'components/**/*.jsx'
+//         ]
+//     })
+// });
 
 fis.match('::package', {
 	// 本项目为纯前段项目，所以用 loader 编译器加载，

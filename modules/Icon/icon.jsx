@@ -1,5 +1,6 @@
 'use strict';
-require('./icon.less');
+
+import "./icon.less";
 import React from "react";
 let prefix = 'icon-';
 

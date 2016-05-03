@@ -11,5 +11,6 @@ import Input from "./Input/input"
 import Inputgroup from "./Input-Group/inputgroup"
 import Select from "./Select/select";
 import Datepicker from "./Datepicker/datepicker";
+import Confirm from "./Confirm/confirm";
 
-export { Button,Radiogroup,Checkbox,Checkboxgroup,Icon,Input,Inputgroup,Select,Datepicker};
+export { Button,Radiogroup,Checkbox,Checkboxgroup,Icon,Input,Inputgroup,Select,Datepicker,Confirm};

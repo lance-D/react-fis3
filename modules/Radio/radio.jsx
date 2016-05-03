@@ -1,5 +1,6 @@
 'use strict';
-require('./radio.less');
+
+import "./radio.less";
 import React from "react";
 import Icon from "../Icon/icon";
 

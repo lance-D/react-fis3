@@ -1,5 +1,5 @@
 'use strict';
-require('./checkbox.less');
+import "./checkbox.less";
 import React from "react";
 import Icon from "../Icon/icon";
 import classnames from "classnames";

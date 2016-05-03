@@ -1,8 +1,8 @@
 /**
  * @file: mod.js
  * @author fis
- * ver: 1.0.13
- * update: 2016/01/27
+ * ver: 1.0.11
+ * update: 2015/05/14
  * https://github.com/fex-team/mod
  */
 var require;
@@ -25,85 +25,65 @@ var define;
     var resMap = {};
     var pkgMap = {};
 
-    var createScripts = function(queues, onerror){
-
-        var docFrag = document.createDocumentFragment();
-
-        for(var i = 0, len = queues.length; i < len; i++){
-            var id = queues[i].id;
-            var url = queues[i].url;
-
-            if (url in scriptsMap) {
-                continue;
-            }
-
-            scriptsMap[url] = true;
-
-            var script = document.createElement('script');
-            if (onerror) {
-                (function(script, id){
-                    var tid = setTimeout(function(){
-                        onerror(id);
-                    }, require.timeout);
-
-                    script.onerror = function () {
-                        clearTimeout(tid);
-                        onerror(id);
-                    };
-
-                    var onload = function () {
-                        clearTimeout(tid);
-                    };
-
-                    if ('onload' in script) {
-                        script.onload = onload;
-                    }
-                    else {
-                        script.onreadystatechange = function () {
-                            if (this.readyState === 'loaded' || this.readyState === 'complete') {
-                                onload();
-                            }
-                        };
-                    }
-                })(script, id);
-            }
-            script.type = 'text/javascript';
-            script.src = url;
-
-            docFrag.appendChild(script);
+    var createScript = function (url, onerror) {
+        if (url in scriptsMap) {
+            return;
         }
 
-        head.appendChild(docFrag);
-    };
+        scriptsMap[url] = true;
 
-    var loadScripts = function(ids, callback, onerror){
-        var queues = [];
-        for(var i = 0, len = ids.length; i < len; i++){
-            var id = ids[i];
-            var queue = loadingMap[id] || (loadingMap[id] = []);
-            queue.push(callback);
+        var script = document.createElement('script');
+        if (onerror) {
+            var tid = setTimeout(onerror, require.timeout);
 
-            //
-            // resource map query
-            //
-            var res = resMap[id] || resMap[id + '.js'] || {};
-            var pkg = res.pkg;
-            var url;
+            script.onerror = function () {
+                clearTimeout(tid);
+                onerror();
+            };
 
-            if (pkg) {
-                url = pkgMap[pkg].url || pkgMap[pkg].uri;
+            var onload = function () {
+                clearTimeout(tid);
+            };
+
+            if ('onload' in script) {
+                script.onload = onload;
             }
             else {
-                url = res.url || res.uri || id;
+                script.onreadystatechange = function () {
+                    if (this.readyState === 'loaded' || this.readyState === 'complete') {
+                        onload();
+                    }
+                };
             }
+        }
+        script.type = 'text/javascript';
+        script.src = url;
+        head.appendChild(script);
+        head.removeChild(script);
+        return script;
+    };
 
-            queues.push({
-                id: id,
-                url: url
-            });
+    var loadScript = function (id, callback, onerror) {
+        var queue = loadingMap[id] || (loadingMap[id] = []);
+        queue.push(callback);
+
+        //
+        // resource map query
+        //
+        var res = resMap[id] || resMap[id + '.js'] || {};
+        var pkg = res.pkg;
+        var url;
+
+        if (pkg) {
+            url = pkgMap[pkg].url;
+        }
+        else {
+            url = res.url || id;
         }
 
-        createScripts(queues, onerror);
+        createScript(url, onerror && function () {
+            onerror(id);
+        });
     };
 
     define = function (id, factory) {
@@ -164,7 +144,6 @@ var define;
 
         var needMap = {};
         var needNum = 0;
-        var needLoad = [];
 
         function findNeed(depArr) {
             var child;
@@ -175,12 +154,6 @@ var define;
                 //
                 var dep = require.alias(depArr[i]);
 
-                if (dep in needMap) {
-                    continue;
-                }
-
-                needMap[dep] = true;
-
                 if (dep in factoryMap) {
                     // check whether loaded resource's deps is loaded or not
                     child = resMap[dep] || resMap[dep + '.js'];
@@ -190,8 +163,13 @@ var define;
                     continue;
                 }
 
-                needLoad.push(dep);
+                if (dep in needMap) {
+                    continue;
+                }
+
+                needMap[dep] = true;
                 needNum++;
+                loadScript(dep, updateNeed, onerror);
 
                 child = resMap[dep] || resMap[dep + '.js'];
                 if (child && 'deps' in child) {
@@ -212,7 +190,6 @@ var define;
         }
 
         findNeed(names);
-        loadScripts(needLoad, updateNeed, onerror);
         updateNeed();
     };
 
@@ -237,16 +214,7 @@ var define;
     };
 
     require.loadJs = function (url) {
-        if (url in scriptsMap) {
-            return;
-        }
-
-        scriptsMap[url] = true;
-
-        var script = document.createElement('script');
-        script.type = 'text/javascript';
-        script.src = url;
-        head.appendChild(script);
+        createScript(url);
     };
     require.alias = function (id) {
         return id.replace(/\.js$/i, '');

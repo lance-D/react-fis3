@@ -3,7 +3,7 @@
 import React from "react";
 import ReactDOM from 'react-dom';
 
-import { Button,Radiogroup,Checkbox,Checkboxgroup,Icon,Input,Inputgroup,Select,Datepicker} from  '../components/main'
+import { Button,Radiogroup,Checkbox,Checkboxgroup,Icon,Input,Inputgroup,Select,Datepicker,Confirm} from  './main'
 let handleClick =  function(){
 	// handle click
 	console.log('回调函数');
@@ -15,6 +15,10 @@ let handlePaste = function(e){
 
 let hanleSelected = function (e){
 	console.log('select 回调函数,你选择的是:'+e.currentTarget.innerText);
+}
+
+let handleOK = function (e){
+	console.log('已确认')
 }
 
 ReactDOM.render(
@@ -91,6 +95,17 @@ ReactDOM.render(
 		<div className="item clearfix">
 			<Datepicker style={{width:"365px"}} type="date"  className="demo_item fl" placeholder="请选择日期"/>
 			<Datepicker style={{width:"365px"}} className="demo_item fl" placeholder="请选择日期时间" step="30" timeStart="9" timeEnd="19" />
+		</div>
+		<h2>确认框</h2>
+		<div className="item clearfix">
+			<Confirm text="这是一个确认框，确认框带title,触发元素为text(默认)" className="demo_item" title="确认信息" btnTpl="点击弹出确认框" handleOK={handleOK} clickOutClose />
+			<Confirm text="这是一个确认框，确认框但不带标题,修改btnType来触发确认框,如icon，btn" className="demo_item" btnType="icon" btnTpl="candidate" handleOK={handleOK}/>
+		</div>
+		<h2>组件嵌套</h2>
+		<div className="item clearfix">
+			<Confirm className="demo_item" title="确认信息" btnTpl="弹出框(确认框嵌入下拉框)" handleOK={handleOK} >
+				<Select icon="arrow-down" data={['选项一','选项二','选项三','选项四','选项五','选项六','选项七']} className="demo_item" placeholder="单项选择" defaultValue=""/>
+			</Confirm>
 		</div>
 	</div>,
 	document.getElementById('container')
