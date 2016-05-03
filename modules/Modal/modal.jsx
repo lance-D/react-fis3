@@ -16,22 +16,6 @@ class Modal extends React.Component {
 			btnTpl:this.props.btnTpl||'未命名按钮'
 		}
 	}
-	whichTransitionEvent(){
-	    let t;
-	    let el = document.createElement('fakeelement');
-	    let transitions = {
-	      'transition':'transitionend',
-	      'OTransition':'oTransitionEnd',
-	      'MozTransition':'transitionend',
-	      'WebkitTransition':'webkitTransitionEnd'
-	    }
-
-	    for(t in transitions){
-	        if( el.style[t] !== undefined ){
-	            return transitions[t];
-	        }
-	    }
-	}
 	getModalBtnHtml(){
 		let btnType = this.state.btnType;
 		switch (btnType) {
