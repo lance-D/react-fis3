@@ -26,17 +26,17 @@ ReactDOM.render(
 		<h2>按钮</h2>
 		<div className="item">
 			<Button>btn</Button>
-			<Button className="btn_green">green</Button>
-			<Button className="btn_red">red</Button>
-			<Button className="btn_green" disabled>disabled</Button>
-			<Button className="btn_green btn_active">green active</Button>
-			<Button className="btn_red btn_active">red active</Button>
-			<Button className="btn_green btn_link">link</Button>
+			<Button className="green">green</Button>
+			<Button className="red">red</Button>
+			<Button className="green" disabled>disabled</Button>
+			<Button className="green active">green active</Button>
+			<Button className="red active">red active</Button>
+			<Button className="green link">link</Button>
 		</div>
 		<h2>带图标按钮</h2>
 		<div className="item">
-			<Button className="btn_green btn_active"><Icon icon="yes"/>通过</Button>
-			<Button className="btn_green btn_active"><Icon icon="no"/>拒绝</Button>
+			<Button className="green active"><Icon icon="yes"/>通过</Button>
+			<Button className="green active"><Icon icon="no"/>拒绝</Button>
 		</div>
 		<h2>按钮大小</h2>
 		<div className="item">
@@ -118,7 +118,7 @@ ReactDOM.render(
 				<h4>输入框组</h4>
 				<Inputgroup type="search" icon="search" width="400px" placeholder="请输入搜索的内容"/>
 			</Modal>
-			<Modal title="模态框标题" btnTpl="模态框2" btnType="btn btn_green btn_active" style={{marginLeft:"50px"}}>
+			<Modal title="模态框标题" btnTpl="模态框2" btnType="green active" style={{marginLeft:"50px"}}>
 				<h4>下拉框组</h4>
 				<Select style={{width:"300px"}} icon="arrow-down" data={['选项一','选项二','选项三','选项四','选项五','选项六','选项七']} placeholder="单项选择" defaultValue=""/>
 				<h4>时间日期选框</h4>

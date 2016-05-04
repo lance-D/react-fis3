@@ -64,7 +64,7 @@ class Inputgroup extends React.Component {
 					onKeyUp = {this.handleKeyUp.bind(this)}
 					onChange = {this.handleChange.bind(this)}
 				/>
-				<Button className='btn_green btn_active' onClick={this.handleClick.bind(this)}>
+				<Button className='green active' onClick={this.handleClick.bind(this)}>
 					<Icon icon={this.state.icon||''} />
 					{this.state.text}
 				</Button>
