@@ -94,9 +94,9 @@ class Time extends React.Component {
 
 		return (
 			<div className="time_container">
-				<Button className="btn_link btn_up" onClick={this.clickUp.bind(this)}><Icon icon="arrow-up"/></Button>
+				<Button className="link btn_up" onClick={this.clickUp.bind(this)}><Icon icon="arrow-up"/></Button>
 				{tiemItems}
-				<Button className="btn_link btn_down" onClick={this.clickDown.bind(this)}><Icon icon="arrow-down"/></Button>
+				<Button className="link btn_down" onClick={this.clickDown.bind(this)}><Icon icon="arrow-down"/></Button>
 			</div>
 		)
 	}

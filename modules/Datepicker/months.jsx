@@ -53,9 +53,9 @@ class Months extends React.Component {
 		let monthItem = this.state.lang.toUpperCase() =='CN' ? dateCN.months[this.state.month-1] : dateEN.months[this.state.month-1];
 		return(
 			<div className="month_container">
-				<Button className="btn_link btn_left" onClick={this.handlePrevClick.bind(this)}><Icon icon="arrow-left"/></Button>
+				<Button className="link btn_left" onClick={this.handlePrevClick.bind(this)}><Icon icon="arrow-left"/></Button>
 				<span>{this.state.year}{this.state.lang.toUpperCase() =='CN'?'年':'&nbsp;&nbsp;'}{monthItem}</span>
-				<Button className="btn_link btn_right" onClick={this.handleNextClcik.bind(this)}><Icon icon="arrow-right"/></Button>
+				<Button className="link btn_right" onClick={this.handleNextClcik.bind(this)}><Icon icon="arrow-right"/></Button>
 			</div>
 		)
 	}
