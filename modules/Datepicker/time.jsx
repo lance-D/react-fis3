@@ -13,9 +13,6 @@ class Time extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state ={
-			step:this.props.step,
-			timeStart:this.props.timeStart,
-			timeEnd:this.props.timeEnd,
 			scrollHeight:this.props.scrollHeight||40, // 点击上 下 箭头滚动距离
 			value:this.props.value||''
 		}
@@ -40,9 +37,9 @@ class Time extends React.Component {
 		}
 	}
 	getHoursArr(){
-		let _step = parseInt(this.state.step) || 0,
-			_start = parseInt(this.state.timeStart) || 0,
-			_end = parseInt(this.state.timeEnd) || 24;
+		let _step = parseInt(this.props.step) || 0,
+			_start = parseInt(this.props.timeStart) || 0,
+			_end = parseInt(this.props.timeEnd) || 24;
 		let arr = this.props.timeArr;
 		for(let i= _start;i <= _end;i++){
 			for(let j= 0; j <= 60 && i < _end;j+=_step){
@@ -84,7 +81,7 @@ class Time extends React.Component {
 	}
 
 	render(){
-		let timeArr = this.state.step ? this.getHoursArr() : this.getInitHoursArr();
+		let timeArr = this.props.step ? this.getHoursArr() : this.getInitHoursArr();
 
 		let tiemItems = timeArr.map(function(item,i){
 			return (

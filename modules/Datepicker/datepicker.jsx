@@ -22,12 +22,6 @@ class Datepicker extends React.Component {
 			day:currDate.getDate(),
 			show:false,
 			value:'',
-			lang:this.props.lang,
-			type:this.props.type,
-			format:this.props.format,
-			step:this.props.step,
-			timeStart:this.props.timeStart,
-			timeEnd:this.props.timeEnd,
 			selectedDay:currDate.getDate(),
 			selectedTime:''
 		}
@@ -54,7 +48,7 @@ class Datepicker extends React.Component {
 	}
 	// 设置input的值
 	setDateValue(){
-		let type = this.state.type,format = this.state.format||'yyyy-MM-dd',date;
+		let type = this.props.type,format = this.props.format||'yyyy-MM-dd',date;
 		let _month = this.state.month<10?('0'+this.state.month):this.state.month.toString();
 		let _day = this.state.selectedDay<10?('0'+this.state.selectedDay):this.state.selectedDay.toString();
 		switch (type) {
@@ -91,7 +85,7 @@ class Datepicker extends React.Component {
 		_this.setState({selectedDay:day});
 		setTimeout(function() {
 			_this.setDateValue();
-			if(_this.state.type === 'date'){
+			if(_this.props.type === 'date'){
 				_this.hide();
 			}
 		}, 0);
@@ -102,7 +96,7 @@ class Datepicker extends React.Component {
 		_this.setState({selectedTime:time});
 		setTimeout(function() {
 			_this.setDateValue();
-			if(_this.state.type !== 'date'){
+			if(_this.props.type !== 'date'){
 				_this.hide();
 			}
 		}, 0);
@@ -113,13 +107,13 @@ class Datepicker extends React.Component {
 			<div ref='datepicker' className={className} style={this.props.style}>
 				<Input placeholder={this.props.placeholder} icon="arrow-down" value={this.state.value} onClick={this.handleClick.bind(this)} readOnly/>
 				<div className="datepicker_container clearfix">
-					<div className="datepicker_date fl" style={this.state.type ==='time'?{display:'none'}:{display:'block'}}>
-						<Months lang={this.state.lang} year={this.state.year} month={this.state.month} onChange={this.handleMonthChange.bind(this)}/>
-						<Weeks lang={this.state.lang}/>
+					<div className="datepicker_date fl" style={this.props.type ==='time'?{display:'none'}:{display:'block'}}>
+						<Months lang={this.props.lang} year={this.state.year} month={this.state.month} onChange={this.handleMonthChange.bind(this)}/>
+						<Weeks lang={this.props.lang}/>
 						<Days year={this.state.year} month={this.state.month} day={this.state.day} setDay={this.handleSetDay.bind(this)}/>
 					</div>
-					<div className="datepicker_time fl" style={this.state.type ==='date'?{display:'none'}:{display:'block'}} >
-						<Time step={this.state.step} timeStart={this.state.timeStart} timeEnd={this.state.timeEnd} setTime={this.handleSetTime.bind(this)} />
+					<div className="datepicker_time fl" style={this.props.type ==='date'?{display:'none'}:{display:'block'}} >
+						<Time step={this.props.step} timeStart={this.props.timeStart} timeEnd={this.props.timeEnd} setTime={this.handleSetTime.bind(this)} />
 					</div>
 				</div>
 			</div>

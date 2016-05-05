@@ -7,21 +7,21 @@ class Days extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state={
-			year:this.props.year,
-			month:this.props.month,
-			day: this.props.day,
+			// year:this.props.year,
+			// month:this.props.month,
+			// day: this.props.day,
 			value:this.props.value||''
 		}
 	}
 
 	componentWillReceiveProps(nextProps){
-		if(nextProps.year !== this.state.year){
+		if(nextProps.year !== this.props.year){
 			this.setState({year:nextProps.year})
 		}
-		if(nextProps.month !== this.state.month){
+		if(nextProps.month !== this.props.month){
 			this.setState({month:nextProps.month})
 		}
-		if(nextProps.day !== this.state.day){
+		if(nextProps.day !== this.props.day){
 			this.setState({day:nextProps.day})
 		}
 	}
@@ -29,14 +29,14 @@ class Days extends React.Component {
 
 	// 获取当前年 月对应的有多少天
 	getMonthDays(){
-		let year = this.state.year,
-			month = this.state.month;
+		let year = this.props.year,
+			month = this.props.month;
 		return new Date(year,month,0).getDate()
 	}
 	// 获取当月1号是周几
 	getWeekday(){
-		let year = this.state.year,
-			month = this.state.month;
+		let year = this.props.year,
+			month = this.props.month;
 		return new Date(year+'/'+month+'/1').getDay()
 	}
 
@@ -50,7 +50,7 @@ class Days extends React.Component {
 			weekday = this.getWeekday(),
 			otherMonth = [],
 			currentMonth = [],
-			day = this.state.day;
+			day = this.props.day;
 		for(let i = 0;i<weekday;i++){
 			otherMonth[i]=i
 		}
