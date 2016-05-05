@@ -62,7 +62,9 @@ class Checkboxgroup extends React.Component {
 }
 Checkboxgroup.propTypes = {
 	style:PropTypes.object,
-	className:PropTypes.string
+	className:PropTypes.string,
+	value:PropTypes.string,
+	sep:PropTypes.string
 }
 
 export { Checkboxgroup as default}
