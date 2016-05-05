@@ -112,8 +112,6 @@ class Select extends React.Component {
 				</li>
 			)
 		})
-
-
 		return (
 			<div ref='select' style={this.props.style} className={className} onClick={this.handleClick.bind(this)}>
 				<Button className='select_btn'>
