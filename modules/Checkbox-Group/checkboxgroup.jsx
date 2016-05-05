@@ -1,7 +1,7 @@
 
 'use strict';
 
-import React from "react";
+import React,{ PropTypes } from "react";
 import classnames from "classnames";
 import Checkbox from "../Checkbox/checkbox";
 import {formatData,contain} from "../Utils/array";
@@ -60,6 +60,9 @@ class Checkboxgroup extends React.Component {
 		)
 	}
 }
-
+Checkboxgroup.propTypes = {
+	style:PropTypes.object,
+	className:PropTypes.string
+}
 
 export { Checkboxgroup as default}

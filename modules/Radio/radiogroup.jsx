@@ -1,6 +1,6 @@
 'use strict';
 
-import React from "react";
+import React,{ PropTypes } from "react";
 import classnames from "classnames";
 import Radio from "./radio";
 import {formatData} from "../Utils/array";
@@ -58,8 +58,16 @@ class Radiogroup extends React.Component {
 			<div style={this.props.style} className={className}>{items}</div>
 		)
 	}
-
-
+}
+Radiogroup.propTypes = {
+	style:PropTypes.object,
+	readOnly:PropTypes.bool,
+	checked:PropTypes.bool,
+	onClick:PropTypes.func,
+	data:PropTypes.oneOfType([PropTypes.array,PropTypes.func]).isRequired,
+	value:PropTypes.string,
+	className:PropTypes.string,
+	onChange:PropTypes.func
 }
 
 export { Radiogroup as default }

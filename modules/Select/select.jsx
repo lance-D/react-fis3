@@ -3,7 +3,7 @@
 
 import "./select.less";
 
-import React from "react";
+import React,{ PropTypes } from "react";
 import classnames from "classnames";
 import Button from "../Button/button";
 import Icon from "../Icon/icon";
@@ -22,7 +22,6 @@ class Select extends React.Component {
 			selectedArr:[]
 		}
 	}
-
 	componentWillReceiveProps(nextProps){
 		if(nextProps.value !== this.state.value){
 			this.setState({value:nextProps.value})
@@ -127,5 +126,12 @@ class Select extends React.Component {
 		)
 	}
 }
-
+Select.propTypes = {
+	style:PropTypes.object,
+	data:PropTypes.oneOfType([PropTypes.array,PropTypes.func]).isRequired,
+	className:PropTypes.string,
+	mult:PropTypes.bool,
+	placeholder:PropTypes.string,
+	icon:PropTypes.string
+}
 export {Select as default};

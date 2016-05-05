@@ -2,7 +2,7 @@
 
 import "./input.less";
 import "../common/errtips.less";
-import React from "react";
+import React,{ PropTypes } from "react";
 import classnames from "classnames";
 import Icon from "../Icon/icon";
 import {checkMail,checkPhone,checkPwd,checkEmpty} from "../Utils/valid";
@@ -121,6 +121,21 @@ class Input extends React.Component {
 			</label>
 		)
 	}
+}
+Input.propTypes = {
+	style:PropTypes.object,
+	type:PropTypes.string,
+	required:PropTypes.bool,
+	className:PropTypes.string,
+	text:PropTypes.string,
+	placeholder:PropTypes.string,
+	isValid:PropTypes.bool,
+	icon:PropTypes.string,
+	children:PropTypes.any,
+	onBlur:PropTypes.func,
+	onFocus:PropTypes.func,
+	onChange:PropTypes.func
+
 }
 /**
  * 默认所有值都是未改变的

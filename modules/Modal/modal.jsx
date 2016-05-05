@@ -1,6 +1,6 @@
 'use strict';
 import "./modal.less";
-import React from "react";
+import React,{ PropTypes } from "react";
 import classnames from "classnames";
 import Icon from "../Icon/icon";
 import Button from "../Button/button";
@@ -60,7 +60,7 @@ class Modal extends React.Component {
 	render(){
 		let containerClass = classnames('modal_container',this.props.className,this.state.show?'open':'');
 		let modalBtnHtml = this.getModalBtnHtml();
-		let modalCancelBtn = this.props.cancelText ? (<span className='modal_cancel' onClick={this.handleClose.bind(this)}>{this.props.cancelText?this.props.cancelText:'取消'}</span>) : '';
+		let modalCancelBtn = this.props.hasCancelBtn ? (<span className='modal_cancel' onClick={this.handleClose.bind(this)}>{this.props.cancelText?this.props.cancelText:'取消'}</span>) : '';
 		return (
 			<div className={containerClass} style={this.props.style}>
 				{modalBtnHtml}
@@ -80,5 +80,18 @@ class Modal extends React.Component {
 		)
 	}
 }
-
+Modal.propTypes = {
+	style:PropTypes.object,
+	className:PropTypes.string,
+	clickOutClose:PropTypes.bool,
+	btnType:PropTypes.string,
+	btnTpl:PropTypes.string.isRequired,
+	hasCancelBtn:PropTypes.string,
+	title:PropTypes.string,
+	okText:PropTypes.string,
+	cancelText:PropTypes.string,
+	handleOK:PropTypes.func,
+	handleClose:PropTypes.func,
+	children:PropTypes.any
+}
 export {Modal as default};

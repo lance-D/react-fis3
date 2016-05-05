@@ -1,7 +1,7 @@
 'use strict';
 
 import "./confirm.less";
-import React from "react";
+import React,{ PropTypes } from "react";
 import classnames from "classnames";
 import Icon from "../Icon/icon";
 import Button from "../Button/button";
@@ -84,4 +84,17 @@ class Confirm extends React.Component {
 	}
 }
 
+Confirm.propTypes = {
+	text:PropTypes.string,
+	btnTpl:PropTypes.string.isRequired,
+	btnType:PropTypes.string,
+	clickOutClose:PropTypes.bool,
+	style:PropTypes.object,
+	className:PropTypes.string,
+	title:PropTypes.string,
+	handleOK:PropTypes.func,
+	handleCancel:PropTypes.func,
+	children:PropTypes.any
+
+}
 export {Confirm as default}

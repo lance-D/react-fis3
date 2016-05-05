@@ -1,6 +1,6 @@
 'use strict';
 
-import React from "react";
+import React,{ PropTypes } from "react";
 import ReactDOM from "react-dom"
 import classnames from "classnames";
 import Input from "../Input/input"
@@ -76,5 +76,14 @@ class Inputgroup extends React.Component {
 
 }
 
+Inputgroup.propTypes = {
+	type:PropTypes.string.isRequired,
+	readOnly:PropTypes.bool,
+	text:PropTypes.string,
+	icon:PropTypes.string,
+	children:PropTypes.any,
+	onKeyUp:PropTypes.func,
+	onChange:PropTypes.func
 
+}
 export {Inputgroup as default};

@@ -1,6 +1,6 @@
 'use strict';
 import "./checkbox.less";
-import React from "react";
+import React,{ PropTypes } from "react";
 import Icon from "../Icon/icon";
 import classnames from "classnames";
 class Checkbox extends React.Component{
@@ -52,7 +52,16 @@ class Checkbox extends React.Component{
 	}
 }
 
-
+Checkbox.propTypes = {
+	style:PropTypes.object,
+	inline:PropTypes.bool,
+	disabled:PropTypes.bool,
+	checked:PropTypes.bool,
+	onChange:PropTypes.func,
+	value:PropTypes.string,
+	text:PropTypes.string,
+	children:PropTypes.any
+}
 
 
 export {Checkbox as default};

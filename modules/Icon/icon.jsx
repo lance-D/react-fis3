@@ -1,7 +1,7 @@
 'use strict';
 
 import "./icon.less";
-import React from "react";
+import React,{ PropTypes } from "react";
 let prefix = 'icon-';
 
 class Icon extends React.Component {
@@ -25,4 +25,11 @@ class Icon extends React.Component {
 		)
 	}
 }
+Icon.propTypes = {
+	style:PropTypes.object,
+	icon:PropTypes.string.isRequired,
+	onClick:PropTypes.func
+}
+
+
 export { Icon as default };

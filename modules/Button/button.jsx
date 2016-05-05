@@ -1,6 +1,6 @@
 'use strict';
 import "./button.less";
-import React from "react";
+import React,{ PropTypes } from "react";
 import classnames from "classnames";
 
 class Button extends React.Component {
@@ -35,5 +35,12 @@ class Button extends React.Component {
 	}
 }
 
-
+Button.propTypes = {
+	style:PropTypes.object,
+	onClick:PropTypes.func,
+	className:PropTypes.string,
+	disabled:PropTypes.bool,
+	text:PropTypes.string,
+	children:PropTypes.any
+}
 export { Button as default };

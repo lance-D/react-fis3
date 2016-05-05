@@ -2,7 +2,7 @@
 
 import "./datepicker.less";
 
-import React from "react";
+import React,{ PropTypes } from "react";
 import classnames from "classnames";
 import Input from "../Input/input";
 import Months from "./months";
@@ -126,5 +126,14 @@ class Datepicker extends React.Component {
 		)
 	}
 }
-
+Datepicker.propTypes = {
+	style:PropTypes.object,
+	placeholder:PropTypes.string,
+	lang:PropTypes.string,
+	type:PropTypes.string,
+	format:PropTypes.string,
+	step:PropTypes.string,
+	timeStart:PropTypes.string,
+	timeEnd:PropTypes.string
+}
 export {Datepicker as default};
