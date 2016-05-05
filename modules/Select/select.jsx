@@ -7,7 +7,7 @@ import React,{ PropTypes } from "react";
 import classnames from "classnames";
 import Button from "../Button/button";
 import Icon from "../Icon/icon";
-import {formatData} from "../Utils/array";
+import {formatData,contain} from "../Utils/array";
 import {addClass,removeClass,removeSiblingsClass,isClickInner} from "../Utils/dom";
 
 
@@ -26,6 +26,14 @@ class Select extends React.Component {
 		if(nextProps.value !== this.state.value){
 			this.setState({value:nextProps.value})
 		}
+	}
+	componentWillMount(){
+		let defaultValue = this.props.defaultValue;
+		let selectedArr = this.state.selectedArr;
+		if(!this.state.mult && !contain(selectedArr,defaultValue)){
+			selectedArr.push(defaultValue);
+		}
+		// console.log(this.props.defaultValue);
 	}
 	componentDidMount(){
 		let _this = this,
@@ -107,7 +115,7 @@ class Select extends React.Component {
 			selectedArr = this.state.selectedArr;
 		let selectItems = this.state.data.map((item,i) => {
 			return (
-				<li key={i} data-value={item.value} onClick={this.handleSelect.bind(this,i)} >
+				<li key={i} data-value={item.value} onClick={this.handleSelect.bind(this,i)} className={item.text===this.props.defaultValue?'active':''}>
 					{item.text}
 				</li>
 			)

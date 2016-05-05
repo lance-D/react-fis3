@@ -88,8 +88,8 @@ ReactDOM.render(
 		</div>
 		<h2>下拉框</h2>
 		<div className="item clearfix">
-			<Select icon="arrow-down" data={['选项一','选项二','选项三','选项四','选项五','选项六','选项七']} className="demo_item fl" placeholder="单项选择" defaultValue=""/>
-			<Select icon="arrow-down" data={['选项一','选项二','选项三','选项四','选项五','选项六','选项七']} mult className="demo_item fl" placeholder="多项选择" defaultValue="" onSelected={hanleSelected}/>
+			<Select icon="arrow-down" data={['选项一','选项二','选项三','选项四','选项五','选项六','选项七']} className="demo_item fl" placeholder="单项选择" defaultValue="选项二"/>
+			<Select icon="arrow-down" data={['选项一','选项二','选项三','选项四','选项五','选项六','选项七']} mult className="demo_item fl" placeholder="多项选择" onSelected={hanleSelected}/>
 		</div>
 		<h2>时间日期选框</h2>
 		<div className="item clearfix">
