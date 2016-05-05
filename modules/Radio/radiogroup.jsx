@@ -43,7 +43,7 @@ class Radiogroup extends React.Component {
   	}
 	render(){
 		let className = classnames(this.props.className,'radio_group');
-		let items = this.state.data.map(function(item,i){
+		let items = this.state.data.map((item,i) => {
 			return (
 				<Radio key = {i}
 					disabled = {this.props.readOnly}
@@ -53,7 +53,7 @@ class Radiogroup extends React.Component {
 					text = {item.text}
 				/>
 			)
-		},this);
+		});
 		return (
 			<div style={this.props.style} className={className}>{items}</div>
 		)

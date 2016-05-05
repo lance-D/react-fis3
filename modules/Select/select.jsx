@@ -105,13 +105,14 @@ class Select extends React.Component {
 	render(){
 		let className = classnames('select',this.props.className,this.state.show?'active':''),
 			selectedArr = this.state.selectedArr;
-		let selectItems = this.state.data.map(function(item,i){
+		let selectItems = this.state.data.map((item,i) => {
 			return (
 				<li key={i} data-value={item.value} onClick={this.handleSelect.bind(this,i)} >
 					{item.text}
 				</li>
 			)
-		},this);
+		})
+
 
 		return (
 			<div ref='select' style={this.props.style} className={className} onClick={this.handleClick.bind(this)}>

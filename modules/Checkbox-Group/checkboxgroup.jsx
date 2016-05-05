@@ -43,7 +43,7 @@ class Checkboxgroup extends React.Component {
 	}
 	render(){
 		let className = classnames(this.props.className,'checkbox_group');
-		let items = this.state.data.map(function(item,i){
+		let items = this.state.data.map((item,i) => {
 			return (
 				<Checkbox key = {i}
 						checked = {contain(this.state.value,item.value)}
@@ -54,7 +54,7 @@ class Checkboxgroup extends React.Component {
 						inline = {this.state.inline}
 				/>
 			)
-		},this);
+		});
 		return (
 			<div style ={this.props.style} className = {className}>{items}</div>
 		)
