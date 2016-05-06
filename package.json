@@ -8,6 +8,10 @@
 		"start": "rm -rf output && fis3 server start",
 		"dev": "fis3 release -cwd dist"
 	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/bigdragon-D/react-fis3"
+	},
 	"keywords": [
 		"FIS3",
 		"react",
