@@ -6,13 +6,7 @@ import classnames from "classnames";
 class Button extends React.Component {
 	constructor(props){
 		super(props);
-		this.state = { disabled: this.props.disabled ,text:this.props.text}
-	}
-	disable() {
-	    this.setState({disabled: true});
-	}
-	enable() {
-	    this.setState({disabled: false});
+		this.state = { text:this.props.text}
 	}
 
 	handleClick(e){
@@ -27,7 +21,7 @@ class Button extends React.Component {
 			<button type="button" style={this.props.style}
 					onClick={this.handleClick.bind(this)}
 					className={className}
-					disabled={this.state.disabled} >
+					disabled={this.props.disabled} >
 					{this.state.text}
 					{this.props.children}
 			</button>
