@@ -7,9 +7,6 @@ class Days extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state={
-			// year:this.props.year,
-			// month:this.props.month,
-			// day: this.props.day,
 			value:this.props.value||''
 		}
 	}
