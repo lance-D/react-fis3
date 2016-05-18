@@ -1,11 +1,14 @@
 'use strict';
 
 export function formatData (data){
-	if(typeof data === 'function'){
-		data.then((res) => {
-			this.setState({ data: this.formatData(res) });
-		})();
-		return [];
+	if(typeof data === 'string'){
+		let obj=null;
+		fetch(data).then((response) => response.json()).then(res => {
+			if(res.state === 1){
+				obj = res
+			}
+		}).done()
+		return obj;
 	}else {
 		return getArray(data);
 	}
