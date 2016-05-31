@@ -11,8 +11,7 @@ class Checkboxgroup extends React.Component {
 		super(props);
 		this.state = {
 			value: this.formatValue(this.props.value),
-			data: formatData(this.props.data),
-			inline:this.props.inline
+			data: formatData(this.props.data)
 		};
 	}
 	formatValue(value){
@@ -51,7 +50,7 @@ class Checkboxgroup extends React.Component {
 						onClick = {this.handleChange.bind(this)}
 						value= {item.value}
 						text = {item.text}
-						inline = {this.state.inline}
+						inline = {this.props.inline}
 				/>
 			)
 		});

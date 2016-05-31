@@ -108,8 +108,8 @@ class Datepicker extends React.Component {
 				<Input placeholder={this.props.placeholder} icon="arrow-down" value={this.state.value} onClick={this.handleClick.bind(this)} readOnly/>
 				<div className="datepicker_container clearfix">
 					<div className="datepicker_date fl" style={this.props.type ==='time'?{display:'none'}:{display:'block'}}>
-						<Months lang={this.props.lang} year={this.state.year} month={this.state.month} onChange={this.handleMonthChange.bind(this)}/>
-						<Weeks lang={this.props.lang}/>
+						<Months lang={this.props.lang||'CN'} year={this.state.year} month={this.state.month} onChange={this.handleMonthChange.bind(this)}/>
+						<Weeks lang={this.props.lang||'CN'}/>
 						<Days year={this.state.year} month={this.state.month} day={this.state.day} setDay={this.handleSetDay.bind(this)}/>
 					</div>
 					<div className="datepicker_time fl" style={this.props.type ==='date'?{display:'none'}:{display:'block'}} >

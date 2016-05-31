@@ -6,25 +6,9 @@ import Button from "../Button/button";
 import Icon from "../Icon/icon";
 
 class Months extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			lang:this.props.lang||'CN',
-			year:this.props.year,
-			month:this.props.month
-		}
-	}
-	componentWillReceiveProps(nextProps){
-		if(nextProps.year !== this.state.year){
-			this.setState({year:nextProps.year})
-		}
-		if(nextProps.month !== this.state.month){
-			this.setState({month:nextProps.month})
-		}
-	}
 	handlePrevClick(){
-		let _month = parseInt(this.state.month)-1,
-			_year = parseInt(this.state.year);
+		let _month = parseInt(this.props.month)-1,
+			_year = parseInt(this.props.year);
 		if(_month<1){
 			_year--
 			_month = 12
@@ -36,8 +20,8 @@ class Months extends React.Component {
 		this.props.onChange(_year,_month);
 	}
 	handleNextClcik(){
-		let _month = parseInt(this.state.month)+1,
-			_year = parseInt(this.state.year);
+		let _month = parseInt(this.props.month)+1,
+			_year = parseInt(this.props.year);
 		if(_month>12){
 			_year++
 			_month = 1
@@ -50,11 +34,11 @@ class Months extends React.Component {
 	}
 
 	render(){
-		let monthItem = this.state.lang.toUpperCase() =='CN' ? dateCN.months[this.state.month-1] : dateEN.months[this.state.month-1];
+		let monthItem = this.props.lang.toUpperCase() =='CN' ? dateCN.months[this.props.month-1] : dateEN.months[this.props.month-1];
 		return(
 			<div className="month_container">
 				<Button className="link btn_left" onClick={this.handlePrevClick.bind(this)}><Icon icon="arrow-left"/></Button>
-				<span>{this.state.year}{this.state.lang.toUpperCase() =='CN'?'年':'&nbsp;&nbsp;'}{monthItem}</span>
+				<span>{this.props.year}{this.props.lang.toUpperCase() =='CN'?'年':'&nbsp;&nbsp;'}{monthItem}</span>
 				<Button className="link btn_right" onClick={this.handleNextClcik.bind(this)}><Icon icon="arrow-right"/></Button>
 			</div>
 		)

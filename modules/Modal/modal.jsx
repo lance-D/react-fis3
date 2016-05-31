@@ -10,17 +10,14 @@ class Modal extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			show:false,
-			clickOutClose:false,
-			btnType:this.props.btnType||'text',
-			btnTpl:this.props.btnTpl||'未命名按钮'
+			show:false
 		}
 	}
 	getModalBtnHtml(){
-		let btnType = this.state.btnType;
+		let btnType = this.props.btnType||'text';
 		switch (btnType) {
 			case 'text':
-				return (<span className='modal_text_link' onClick={this.show.bind(this)}>{this.state.btnTpl}</span>)
+				return (<span className='modal_text_link' onClick={this.show.bind(this)}>{this.state.btnTpl||'未命名按钮'}</span>)
 				break;
 			case 'icon':
 				return (<Icon icon={this.state.btnTpl} onClick={this.show.bind(this)}/>)
@@ -30,7 +27,7 @@ class Modal extends React.Component {
 		}
 	}
 	clickOutClose(){
-		if(this.state.clickOutClose){
+		if(this.props.clickOutClose){
 			this.hide()
 		}
 	}

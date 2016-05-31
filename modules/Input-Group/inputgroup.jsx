@@ -12,16 +12,13 @@ class Inputgroup extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			value:this.props.value,
-			text:this.props.text,
-			icon:this.props.icon,
-			type:this.props.type
+			value:this.props.value
 		}
 	}
 
 	handleKeyUp(e){
 		let value = e.target.value.trim();
-		if(value && this.state.type === 'search'){
+		if(value && this.props.type === 'search'){
 			if(e.keyCode === 13 || e.which === 13){
 				console.log('你要搜索的内容是：'+encodeURIComponent(value))
 			}
@@ -31,7 +28,7 @@ class Inputgroup extends React.Component {
 	handleClick(e){
 		e.stopPropagation();
 		let value = e.currentTarget.previousSibling.getElementsByClassName('input')[0].value.trim();
-		if(value && this.state.type === 'search'){
+		if(value && this.props.type === 'search'){
 			console.log('你要搜索的内容是：'+encodeURIComponent(value));
 		}
 		if(this.props.onClick){
@@ -65,8 +62,8 @@ class Inputgroup extends React.Component {
 					onChange = {this.handleChange.bind(this)}
 				/>
 				<Button className='green active' onClick={this.handleClick.bind(this)}>
-					<Icon icon={this.state.icon||''} />
-					{this.state.text}
+					<Icon icon={this.props.icon||''} />
+					{this.props.text}
 				</Button>
 				{this.props.children}
  			</div>

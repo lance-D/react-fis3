@@ -13,8 +13,6 @@ class Input extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			type:this.props.type,
-			required:this.props.required,
 			value: this.props.value,
 			isValid: this.props.isValid,
 			isChanged:this.props.isChanged
@@ -68,7 +66,7 @@ class Input extends React.Component {
 	 * 验证 type 为 mail，phone，password等输入框，并显示相应错误提示
 	 */
 	validation(ele){
-		let type = this.state.type,_value = ele.value.trim();
+		let type = this.props.type,_value = ele.value.trim();
 		switch (type) {
 			case 'username':
 				checkEmpty(_value) || this.showErrTips(ele,'noUsername');
@@ -88,8 +86,8 @@ class Input extends React.Component {
 	handleBlur(e,props){
 		let _ele = e.currentTarget;
 		if(this.state.isChanged){
-			this.state.required && this.isRequired(_ele);
-			this.state.isValid && this.validation(_ele);
+			this.props.required && this.isRequired(_ele);
+			this.props.isValid && this.validation(_ele);
 		}
 	}
 

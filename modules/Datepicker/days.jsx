@@ -4,26 +4,6 @@ import React from "react";
 import {addClass,removeSiblingsClass} from "../Utils/dom";
 
 class Days extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state={
-			value:this.props.value||''
-		}
-	}
-
-	componentWillReceiveProps(nextProps){
-		if(nextProps.year !== this.props.year){
-			this.setState({year:nextProps.year})
-		}
-		if(nextProps.month !== this.props.month){
-			this.setState({month:nextProps.month})
-		}
-		if(nextProps.day !== this.props.day){
-			this.setState({day:nextProps.day})
-		}
-	}
-
-
 	// 获取当前年 月对应的有多少天
 	getMonthDays(){
 		let year = this.props.year,

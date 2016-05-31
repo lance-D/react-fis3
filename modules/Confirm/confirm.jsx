@@ -14,7 +14,6 @@ class Confirm extends React.Component {
 		this.state = {
 			show:false,
 			clickOutClose:this.props.clickOutClose||false,
-			text:this.props.text,// 必填
 			btnTpl:this.props.btnTpl||'未命名按钮', // 必填
 			btnType:this.props.btnType||'text' // btnType : btn text icon
 		}

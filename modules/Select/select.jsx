@@ -16,8 +16,6 @@ class Select extends React.Component {
 		super(props);
 		this.state = {
 			show:false,
-			data:formatData(this.props.data),
-			mult:this.props.mult,
 			value:this.props.value,
 			selectedArr:[]
 		}
@@ -30,10 +28,9 @@ class Select extends React.Component {
 	componentWillMount(){
 		let defaultValue = this.props.defaultValue;
 		let selectedArr = this.state.selectedArr;
-		if(!this.state.mult && !contain(selectedArr,defaultValue)){
+		if(!this.props.mult && !contain(selectedArr,defaultValue)){
 			selectedArr.push(defaultValue);
 		}
-		// console.log(this.props.defaultValue);
 	}
 	componentDidMount(){
 		let _this = this,
@@ -88,7 +85,7 @@ class Select extends React.Component {
 		if(this.props.readOnly){
 			return
 		}
-		if(this.state.mult){
+		if(this.props.mult){
 			selectedArr.push(
 				<em key={i} className='selected_item'
 					onClick={this.removeSelectedItem.bind(this,i)}
@@ -113,7 +110,7 @@ class Select extends React.Component {
 	render(){
 		let className = classnames('select',this.props.className,this.state.show?'active':''),
 			selectedArr = this.state.selectedArr;
-		let selectItems = this.state.data.map((item,i) => {
+		let selectItems = formatData(this.props.data).map((item,i) => {
 			return (
 				<li key={i} data-value={item.value} onClick={this.handleSelect.bind(this,i)} className={item.text===this.props.defaultValue?'active':''}>
 					{item.text}

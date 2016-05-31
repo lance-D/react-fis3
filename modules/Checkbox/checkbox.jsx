@@ -23,7 +23,7 @@ class Checkbox extends React.Component{
 			checked: e.target.checked
 		});
 		if(this.props.onChange) {
-			this.props.onChange(e.target.checked , this.props.value , this.props.index);
+			this.props.onChange(e.target.checked , this.props.value);
 		}
 	}
 	getValue(){
@@ -42,7 +42,7 @@ class Checkbox extends React.Component{
 						disabled={this.props.readOnly}
 						onChange={this.handleChange.bind(this)}
 						checked= {this.state.checked}
-						value={this.state.value}
+						value={this.props.value}
 						/>
 				<Icon icon={this.state.checked?'checkedbox':'checkbox'} />
 				{this.props.text}

@@ -10,13 +10,6 @@ class Time extends React.Component {
 		timeArr: [],
 		value:''
 	}
-	constructor(props) {
-		super(props);
-		this.state ={
-			scrollHeight:this.props.scrollHeight||40, // 点击上 下 箭头滚动距离
-			value:this.props.value||''
-		}
-	}
 
 	getInitHoursArr(){
 		let hoursArr=[];
@@ -63,20 +56,22 @@ class Time extends React.Component {
 	clickUp(e){
 		e.stopPropagation();
 		let ele = e.target.parentNode.className==='time_container'?e.target.parentNode:e.target.parentNode.parentNode,
-		scrollTop = ele.scrollTop,
-		maxScrollHeight = ele.scrollHeight;
+			scrollTop = ele.scrollTop,
+			maxScrollHeight = ele.scrollHeight,
+			scrollHeight = this.props.scrollHeight || 40;
 		if(scrollTop<maxScrollHeight){
-			ele.scrollTop -= this.state.scrollHeight;
+			ele.scrollTop -= scrollHeight;
 		}
 	}
 
 	clickDown(e){
 		e.stopPropagation();
 		let ele = e.target.parentNode.className==='time_container'?e.target.parentNode:e.target.parentNode.parentNode,
-		scrollTop = ele.scrollTop,
-		maxScrollHeight = ele.scrollHeight;
+			scrollTop = ele.scrollTop,
+			maxScrollHeight = ele.scrollHeight,
+			scrollHeight = this.props.scrollHeight || 40;
 		if(scrollTop<maxScrollHeight){
-			ele.scrollTop += this.state.scrollHeight;
+			ele.scrollTop += scrollHeight;
 		}
 	}
 

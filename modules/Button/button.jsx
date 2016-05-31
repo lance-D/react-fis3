@@ -6,14 +6,12 @@ import classnames from "classnames";
 class Button extends React.Component {
 	constructor(props){
 		super(props);
-		this.state = { text:this.props.text}
 	}
 
 	handleClick(e){
 		if(this.props.onClick){
 			this.props.onClick(e);
 		}
-
 	}
 	render(){
 		let className = classnames('btn',this.props.className);
@@ -22,7 +20,7 @@ class Button extends React.Component {
 					onClick={this.handleClick.bind(this)}
 					className={className}
 					disabled={this.props.disabled} >
-					{this.state.text}
+					{this.props.text}
 					{this.props.children}
 			</button>
 		);

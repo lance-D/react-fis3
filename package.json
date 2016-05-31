@@ -1,38 +1,40 @@
 {
-	"name": "react-fis3",
-	"version": "1.0.0",
-	"description": "base on FIS3 react components",
-	"main": "fis-conf.js",
-	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1",
-		"start": "rm -rf output && fis3 server start",
-		"dev": "fis3 release -cwd dist"
-	},
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/bigdragon-D/react-fis3"
-	},
-	"keywords": [
-		"FIS3",
-		"react",
-		"ES6",
-		"LESS"
-	],
-	"author": "lance",
-	"license": "ISC",
-	"dependencies": {
-		"classnames": "^2.2.3",
-		"fis-parser-less": "^0.1.3",
-		"react": "^15.0.2",
-		"react-dom": "^15.0.2"
-	},
-	"devDependencies": {
-		"fis-parser-babel-5.x": "^1.3.0",
-		"fis3-hook-commonjs": "^0.1.15",
-		"fis3-hook-node_modules": "^2.0.19",
-		"fis3-packager-deps-pack": "0.0.2",
-		"fis3-postpackager-loader": "^1.3.19",
-		"fis3-preprocessor-js-require-css": "^0.1.0",
-		"fis3-preprocessor-js-require-file": "^0.1.0"
-	}
+  "name": "react-fis3",
+  "version": "1.0.0",
+  "description": "base on FIS3 react components",
+  "main": "fis-conf.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "rm -rf output && fis3 server start",
+    "dev": "fis3 release -cwd dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bigdragon-D/react-fis3"
+  },
+  "keywords": [
+    "FIS3",
+    "react",
+    "ES6",
+    "LESS"
+  ],
+  "author": "lance",
+  "license": "ISC",
+  "dependencies": {
+    "classnames": "^2.2.3",
+    "fis-parser-less": "^0.1.3",
+    "react": "^15.0.2",
+    "react-dom": "^15.0.2",
+    "react-redux": "^4.4.5",
+    "redux": "^3.5.2"
+  },
+  "devDependencies": {
+    "fis-parser-babel-5.x": "^1.3.0",
+    "fis3-hook-commonjs": "^0.1.15",
+    "fis3-hook-node_modules": "^2.0.19",
+    "fis3-packager-deps-pack": "0.0.2",
+    "fis3-postpackager-loader": "^1.3.19",
+    "fis3-preprocessor-js-require-css": "^0.1.0",
+    "fis3-preprocessor-js-require-file": "^0.1.0"
+  }
 }
