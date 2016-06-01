@@ -14,7 +14,6 @@ class Input extends React.Component {
 		super(props);
 		this.state = {
 			value: this.props.value,
-			isValid: this.props.isValid,
 			isChanged:this.props.isChanged
 		}
 	}
