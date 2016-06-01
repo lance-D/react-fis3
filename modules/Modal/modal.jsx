@@ -17,13 +17,13 @@ class Modal extends React.Component {
 		let btnType = this.props.btnType||'text';
 		switch (btnType) {
 			case 'text':
-				return (<span className='modal_text_link' onClick={this.show.bind(this)}>{this.state.btnTpl||'未命名按钮'}</span>)
+				return (<span className='modal_text_link' onClick={this.show.bind(this)}>{this.props.btnTpl||'未命名按钮'}</span>)
 				break;
 			case 'icon':
-				return (<Icon icon={this.state.btnTpl} onClick={this.show.bind(this)}/>)
+				return (<Icon icon={this.props.btnTpl} onClick={this.show.bind(this)}/>)
 				break;
 			default:
-				return (<Button className={btnType} text={this.state.btnTpl} onClick={this.show.bind(this)}/>)
+				return (<Button className={btnType} text={this.props.btnTpl} onClick={this.show.bind(this)}/>)
 		}
 	}
 	clickOutClose(){
