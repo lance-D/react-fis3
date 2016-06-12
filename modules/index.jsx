@@ -3,7 +3,8 @@
 import React from "react";
 import ReactDOM from 'react-dom';
 
-import { Button,Radiogroup,Checkbox,Checkboxgroup,Icon,Input,Inputgroup,Select,Datepicker,Confirm,Modal,Textarea} from  './main'
+import { Button,Radiogroup,Checkbox,Checkboxgroup,Icon,Input,Inputgroup,Select,Datepicker,Confirm,Modal,Tags,Textarea} from  './main'
+
 let handleClick =  function(){
 	// handle click
 	console.log('回调函数');
@@ -130,6 +131,10 @@ ReactDOM.render(
 				<h4>时间日期选框</h4>
 				<Datepicker style={{width:"365px"}} type="date" placeholder="请选择日期"/>
 			</Modal>
+		</div>
+		<h2>添加标签</h2>
+		<div className="item clearfix">
+			<Tags tagArray={['认真','勤奋']}/>
 		</div>
 	</div>,
 	document.getElementById('container')
