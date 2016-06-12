@@ -1,17 +1,17 @@
 @import "../common/variables.less";
 @import "../common/vender.less";
 
-.modal_container {
+.modal-container {
 	position: relative;
 	display: inline-block;
-	.modal_text_link {
+	.modal-text-link {
 		font-size: @fs-14;
 		cursor: pointer;
 	}
 	i {
 		cursor: pointer;
 	}
-	.modal_mask {
+	.modal-mask {
 		position: fixed;
 		left: 0;
 		right: 0;
@@ -49,21 +49,21 @@
 				opacity: 1;
 			}
 		}
-		.modal_header {
+		.modal-header {
 			font-size: @fs-18;
 			line-height: 48px;
 			height: 48px;
 			color: @fc-3;
 		}
-		.modal_body {
+		.modal-body {
 			font-size: @fs-14;
 			color: @fc-5;
 		}
-		.modal_footer {
+		.modal-footer {
 			position: relative;
 			height: 46px;
 			font-size: 0;
-			.modal_OK,.modal_cancel {
+			.modal-OK,.modal-cancel {
 				display: inline-block;
 				padding: 0 40px;
 				height: 46px;
@@ -73,12 +73,12 @@
 				font-size: @fs-16;
 				margin-top: 18px;
 			}
-			.modal_OK {
+			.modal-OK {
 				background-color: @green;
 				color: @white;
 				border-radius: 2px;
 			}
-			.modal_cancel {
+			.modal-cancel {
 				padding: 0 15px;
 				color: @fc-3;
 			}
@@ -90,7 +90,7 @@
 			visibility: visible;
 			top: 200px;
 		}
-		.modal_mask {
+		.modal-mask {
 			visibility: visible;
 		}
 	}

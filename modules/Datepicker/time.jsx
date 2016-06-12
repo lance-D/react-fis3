@@ -55,7 +55,7 @@ class Time extends React.Component {
 
 	clickUp(e){
 		e.stopPropagation();
-		let ele = e.target.parentNode.className==='time_container'?e.target.parentNode:e.target.parentNode.parentNode,
+		let ele = e.target.parentNode.className==='time-container'?e.target.parentNode:e.target.parentNode.parentNode,
 			scrollTop = ele.scrollTop,
 			maxScrollHeight = ele.scrollHeight,
 			scrollHeight = this.props.scrollHeight || 40;
@@ -66,7 +66,7 @@ class Time extends React.Component {
 
 	clickDown(e){
 		e.stopPropagation();
-		let ele = e.target.parentNode.className==='time_container'?e.target.parentNode:e.target.parentNode.parentNode,
+		let ele = e.target.parentNode.className==='time-container'?e.target.parentNode:e.target.parentNode.parentNode,
 			scrollTop = ele.scrollTop,
 			maxScrollHeight = ele.scrollHeight,
 			scrollHeight = this.props.scrollHeight || 40;
@@ -80,15 +80,15 @@ class Time extends React.Component {
 
 		let tiemItems = timeArr.map(function(item,i){
 			return (
-				<span key={i} className="time_item" onClick={this.handleClick.bind(this,i)}>{item}</span>
+				<span key={i} className="time-item" onClick={this.handleClick.bind(this,i)}>{item}</span>
 			)
 		},this)
 
 		return (
-			<div className="time_container">
-				<Button className="link btn_up" onClick={this.clickUp.bind(this)}><Icon icon="arrow-up"/></Button>
+			<div className="time-container">
+				<Button className="link btn-up" onClick={this.clickUp.bind(this)}><Icon icon="arrow-up"/></Button>
 				{tiemItems}
-				<Button className="link btn_down" onClick={this.clickDown.bind(this)}><Icon icon="arrow-down"/></Button>
+				<Button className="link btn-down" onClick={this.clickDown.bind(this)}><Icon icon="arrow-down"/></Button>
 			</div>
 		)
 	}

@@ -36,16 +36,16 @@ class Days extends React.Component {
 		}
 		let otherMonths = otherMonth.map(function(item,i){
 			return (
-				<li key={i} className="other_month"></li>
+				<li key={i} className="other-month"></li>
 			)
 		},this);
 		let currentMonths = currentMonth.map(function(item,i){
 			return (
-				item == day ? <li key={i} className="day_item today" onClick={this.handleClick.bind(this)}>{item}</li>:<li key={i} className="day_item" onClick={this.handleClick.bind(this)}>{item}</li>
+				item == day ? <li key={i} className="day-item today" onClick={this.handleClick.bind(this)}>{item}</li>:<li key={i} className="day-item" onClick={this.handleClick.bind(this)}>{item}</li>
 			)
 		},this)
 		return (
-			<ul className="day_container clearfix">{otherMonths}{currentMonths}</ul>
+			<ul className="day-container clearfix">{otherMonths}{currentMonths}</ul>
 		)
 	}
 }

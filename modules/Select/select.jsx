@@ -87,7 +87,7 @@ class Select extends React.Component {
 		}
 		if(this.props.mult){
 			selectedArr.push(
-				<em key={i} className='selected_item'
+				<em key={i} className='selected-item'
 					onClick={this.removeSelectedItem.bind(this,i)}
 					dangerouslySetInnerHTML={{__html: text}}>
 				</em>
@@ -119,10 +119,10 @@ class Select extends React.Component {
 		})
 		return (
 			<div ref='select' style={this.props.style} className={className} onClick={this.handleClick.bind(this)}>
-				<Button className='select_btn'>
+				<Button className='select-btn'>
 					{selectedArr.length>0 ? selectedArr : <span className="placeholder">{this.props.placeholder} </span>} <Icon icon={this.props.icon} />
 				</Button>
-				<ul className='select_menu'>
+				<ul className='select-menu'>
 					{selectItems}
 				</ul>
 				{this.props.children}

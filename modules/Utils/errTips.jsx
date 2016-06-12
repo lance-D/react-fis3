@@ -4,7 +4,7 @@ import {getTipsByType} from "../Utils/lang";
 
 export function afterErrTips(ele,errType){
 	let nextEle = ele.nextElementSibling;
-	if(nextEle && nextEle.className === 'error_tips'){
+	if(nextEle && nextEle.className === 'error-tips'){
 		let currType = ele.nextElementSibling.getAttribute('data-type');
 		if(currType !== errType && getTipsByType(currType).index < getTipsByType(errType).index){
 			ele.nextElementSibling.innerHTML = '<em></em>'+getTipsByType(currType).text;
@@ -16,7 +16,7 @@ export function afterErrTips(ele,errType){
 		ele.nextElementSibling.style.maxHeight = '16px';
 	}else{
 		let newEle=document.createElement('span');
-		newEle.setAttribute('class','error_tips');
+		newEle.setAttribute('class','error-tips');
 		newEle.setAttribute('data-type',errType);
 		newEle.innerHTML = '<em></em>'+getTipsByType(errType).text;
 		ele.parentNode.appendChild(newEle);

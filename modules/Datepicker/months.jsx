@@ -36,10 +36,10 @@ class Months extends React.Component {
 	render(){
 		let monthItem = this.props.lang.toUpperCase() =='CN' ? dateCN.months[this.props.month-1] : dateEN.months[this.props.month-1];
 		return(
-			<div className="month_container">
-				<Button className="link btn_left" onClick={this.handlePrevClick.bind(this)}><Icon icon="arrow-left"/></Button>
+			<div className="month-container">
+				<Button className="link btn-left" onClick={this.handlePrevClick.bind(this)}><Icon icon="arrow-left"/></Button>
 				<span>{this.props.year}{this.props.lang.toUpperCase() =='CN'?'年':'&nbsp;&nbsp;'}{monthItem}</span>
-				<Button className="link btn_right" onClick={this.handleNextClcik.bind(this)}><Icon icon="arrow-right"/></Button>
+				<Button className="link btn-right" onClick={this.handleNextClcik.bind(this)}><Icon icon="arrow-right"/></Button>
 			</div>
 		)
 	}

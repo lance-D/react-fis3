@@ -43,7 +43,7 @@ class Inputgroup extends React.Component {
 		let componentWidth = parseInt(this.props.width),
 			componentDom = ReactDOM.findDOMNode(this),
 			btnWidth = componentDom.getElementsByClassName('btn')[0].offsetWidth;
-		componentDom.getElementsByClassName('input_item')[0].style.width = (componentWidth - btnWidth)+'px';
+		componentDom.getElementsByClassName('input-item')[0].style.width = (componentWidth - btnWidth)+'px';
 
 	}
 	handleChange(e){
@@ -52,7 +52,7 @@ class Inputgroup extends React.Component {
 	}
 
 	render(){
-		let className = classnames(this.props.className,'input_group');
+		let className = classnames(this.props.className,'input-group');
 		return (
 			<div className={className} style={this.props.style}>
 				<Input placeholder={this.props.placeholder}

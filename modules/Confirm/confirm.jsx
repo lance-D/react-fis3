@@ -50,7 +50,7 @@ class Confirm extends React.Component {
 		let btnType = this.state.btnType;
 		switch (btnType) {
 			case 'text':
-				return (<span className='confirm_text_link' onClick={this.show.bind(this)}>{this.state.btnTpl}</span>)
+				return (<span className='confirm-text-link' onClick={this.show.bind(this)}>{this.state.btnTpl}</span>)
 				break;
 			case 'icon':
 				return (<Icon icon={this.state.btnTpl} onClick={this.show.bind(this)}/>)
@@ -60,22 +60,22 @@ class Confirm extends React.Component {
 		}
 	}
 	render(){
-		let containerClass = classnames('confirm_container',this.props.className,this.state.show?'open':'');
+		let containerClass = classnames('confirm-container',this.props.className,this.state.show?'open':'');
 		let confirmBtnHtml = this.getConfirmBtnHtml();
 		return (
 			<div className={containerClass} style={this.props.style}>
 				{confirmBtnHtml}
-				<div className='confirm_mask' style={{display:this.state.show?'block':'none'}} onClick={this.clickOutClose.bind(this)}></div>
+				<div className='confirm-mask' style={{display:this.state.show?'block':'none'}} onClick={this.clickOutClose.bind(this)}></div>
 				<div className='confirm' >
 					<Icon icon='close' onClick={this.handleCancel.bind(this)}/>
-					{this.props.title ? <div className='confirm_header'>{this.props.title}</div>:''}
-					<div className='confirm_body'>
+					{this.props.title ? <div className='confirm-header'>{this.props.title}</div>:''}
+					<div className='confirm-body'>
 						{this.props.text}
 						{this.props.children}
 					</div>
-					<div className='confirm_footer'>
-						<span className='confirm_OK' onClick={this.handleOK.bind(this)}>{this.props.okText?this.props.okText:'确定'}</span>
-						<span className='confirm_cancel' onClick={this.handleCancel.bind(this)}>{this.props.cancelText?this.props.cancelText:'取消'}</span>
+					<div className='confirm-footer'>
+						<span className='confirm-OK' onClick={this.handleOK.bind(this)}>{this.props.okText?this.props.okText:'确定'}</span>
+						<span className='confirm-cancel' onClick={this.handleCancel.bind(this)}>{this.props.cancelText?this.props.cancelText:'取消'}</span>
 					</div>
 				</div>
 			</div>

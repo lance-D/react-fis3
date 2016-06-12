@@ -47,7 +47,7 @@ class Input extends React.Component {
 	 */
 	showErrTips(ele,type){
 		afterErrTips(ele,type);
-		addClass(ele,'input_warning');
+		addClass(ele,'input-warning');
 	}
 
 	/**
@@ -55,9 +55,9 @@ class Input extends React.Component {
 	 */
 	hideErrTips(ele){
 		let nextEle = ele.nextElementSibling;
-		if(nextEle && nextEle.className == 'error_tips'){
+		if(nextEle && nextEle.className == 'error-tips'){
 			nextEle.style.maxHeight = '0';
-			removeClass(ele,'input_warning')
+			removeClass(ele,'input-warning')
 		}
 	}
 
@@ -102,11 +102,11 @@ class Input extends React.Component {
 	}
 
 	render(){
-		let className = classnames(this.props.className,'input_item');
+		let className = classnames(this.props.className,'input-item');
 		let {style,required,...others} = this.props;
 		return (
 			<label style={this.props.style} className ={className}>
-				{this.props.text?<span className='input_label'>{this.props.text}</span>:''}
+				{this.props.text?<span className='input-label'>{this.props.text}</span>:''}
 				<input {...others}
 					className='input'
 					onBlur= {this.handleBlur.bind(this)}

@@ -8,7 +8,7 @@ export default class Textarea extends React.Component {
 	resizeTimeout = 0;
 	decreaseDistance = 1; // 删除文本时 高度减小的单位
 	state = {textValueLength:parseInt(this.props.maxlength)} // 输入框初始文本长度
-	
+
 	componentDidMount() {
 	 	const areaDom = this.refs.area;
 	 	areaDom.style.height = `${areaDom.scrollHeight}px`;
@@ -49,7 +49,7 @@ export default class Textarea extends React.Component {
 	}
 	handleKeyUp() {
 		if(!this.props.maxlength) {
-			return 
+			return
 		}
 		let areaDOM = this.refs.area;
 		let textLength = areaDOM.value.replace(/[\r\n]/g,'').trim().length;
@@ -58,8 +58,9 @@ export default class Textarea extends React.Component {
 			this.setState({textValueLength: maxlength-textLength})
 		}else if(maxlength == textLength){
 			this.setState({textValueLength: maxlength-textLength});
-			if(areaDOM.value.lastIndexOf('\n') > 0 && (areaDOM.value.lastIndexOf('\n') - areaDOM.value.length) == -2 ) {
-				areaDOM.value = areaDOM.value.substring(0,areaDOM.value.lastIndexOf('\n')+2);
+			let indexofEnter = areaDOM.value.lastIndexOf('\n');
+			if(indexofEnter > 0 && (areaDOM.value.length - indexofEnter) == 1 ) {
+				areaDOM.value = areaDOM.value.substr(0,indexofEnter);
 			}
 		}
 		else{
@@ -88,17 +89,17 @@ export default class Textarea extends React.Component {
 	}
 	render (){
 		let className = classname('textarea-box',this.state.textValueLength == 0 && 'warning');
-		let wordNumber = this.get
+		let {style,...others} = this.props;
 		return (
-			<div className={className} style={{width:this.props.width}} onClick={this.handleClick.bind(this)} > 
-				<textarea
+			<div className={className} style={{width:this.props.width}} onClick={this.handleClick.bind(this)} >
+				<textarea {...others}
 					style={this.props.style}
-					ref='area' 
+					ref='area'
 					onKeyUp={this.handleKeyUp.bind(this)}
 					onChange={this.handleChagne.bind(this)}
-					
+					onKeydown = {this.handleKeyUp.bind(this)}
 					onBlur={this.handleBlur.bind(this)}
-					placeholder={this.props.placeholder}>
+					>
 				</textarea>
 				{this.props.maxlength && <span className="word-limit">还剩 <em>{this.state.textValueLength}</em> 个字</span>}
 			</div>

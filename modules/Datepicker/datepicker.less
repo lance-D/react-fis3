@@ -2,7 +2,7 @@
 @import "../common/vender.less";
 .datepicker {
 	position: relative;
-	.datepicker_container {
+	.datepicker-container {
 		position: absolute;
 		left: 0;
 		top: 90%;
@@ -16,7 +16,7 @@
 		background-color: @white;
 	}
 	&.active {
-		.datepicker_container {
+		.datepicker-container {
 			visibility: visible;;
 			opacity: 1;
 			top: 105%;
@@ -25,7 +25,7 @@
 			.rotate(180deg);
 		}
 	}
-	.input_item {
+	.input-item {
 		width: 100%;
 		.input {
 			padding-right: 30px;
@@ -35,11 +35,11 @@
 			.transition(.3s);
 		}
 	}
-	.datepicker_date {
+	.datepicker-date {
 		position: relative;
 		width: 288px;
 		min-height: 280px;
-		.month_container {
+		.month-container {
 			position: relative;
 			height: 59px;
 			line-height: 59px;
@@ -51,7 +51,7 @@
 				color: @fc-3;
 				text-align: center;
 			}
-			.btn_left ,.btn_right {
+			.btn-left ,.btn-right {
 				position: absolute;
 				font-size: @fs-18;
 				color: @fc-3;
@@ -62,18 +62,18 @@
 					color: @green;
 				}
 			}
-			.btn_left {
+			.btn-left {
 				left:27px;
 			}
-			.btn_right {
+			.btn-right {
 				right: 27px;
 			}
 		}
-		.week_container {
+		.week-container {
 			width: 100%;
 			margin-top: 16px;
 			font-size: 0;
-			.week_item {
+			.week-item {
 				width: 100%/7;
 				height: 14px;
 				display: inline-block;
@@ -83,8 +83,8 @@
 				text-align: center;
 			}
 		}
-		.day_container {
-			.other_month,.day_item {
+		.day-container {
+			.other-month,.day-item {
 				position: relative;
 				height: 30px;
 				width: 100%/7;
@@ -96,11 +96,11 @@
 				margin-top: 5px;
 				background-clip: content-box;
 			}
-			.other_month {
+			.other-month {
 				font-size: 0;
 				cursor: default;
 			}
-			.day_item {
+			.day-item {
 				font-size: @fs-14;
 				color: @fc-5;
 				cursor: pointer;
@@ -127,12 +127,12 @@
 			}
 		}
 	}
-	.datepicker_time {
+	.datepicker-time {
 		position: relative;
 		width: 75px;
 		height: 280px;;
 		border-left: 1px solid #c5e6de;
-		.time_container {
+		.time-container {
 			width: 100%;
 			max-height: 183px;
 			background-color: @white;
@@ -157,7 +157,7 @@
 				}
 			}
 		}
-		.time_item {
+		.time-item {
 			width: 100%;
 			display: block;
 			font-size: @fs-14;
@@ -170,7 +170,7 @@
 				color: @green;
 			}
 		}
-		.btn_up, .btn_down {
+		.btn-up, .btn-down {
 			position: absolute;
 			width: 100%;
 			display: block;
@@ -182,10 +182,10 @@
 				color: @green;
 			}
 		}
-		.btn_up {
+		.btn-up {
 			top: 8px;
 		}
-		.btn_down {
+		.btn-down {
 			bottom: 5px;
 		}
 	}

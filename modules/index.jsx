@@ -90,7 +90,7 @@ ReactDOM.render(
 		<div className="item">
 			<Textarea width="400px" placeholder="输入点什么" />
 			<h4>限制输入字数</h4>
-			<Textarea width="400px" maxlength="20" placeholder="输入点什么"/>
+			<Textarea width="400px" maxlength="200" placeholder="输入点什么" spellcheck='false'/>
 		</div>
 		<h2>下拉框</h2>
 		<div className="item clearfix">

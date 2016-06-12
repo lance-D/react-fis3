@@ -106,13 +106,13 @@ class Datepicker extends React.Component {
 		return (
 			<div ref='datepicker' className={className} style={this.props.style}>
 				<Input placeholder={this.props.placeholder} icon="arrow-down" value={this.state.value} onClick={this.handleClick.bind(this)} readOnly/>
-				<div className="datepicker_container clearfix">
-					<div className="datepicker_date fl" style={this.props.type ==='time'?{display:'none'}:{display:'block'}}>
+				<div className="datepicker-container clearfix">
+					<div className="datepicker-date fl" style={this.props.type ==='time'?{display:'none'}:{display:'block'}}>
 						<Months lang={this.props.lang||'CN'} year={this.state.year} month={this.state.month} onChange={this.handleMonthChange.bind(this)}/>
 						<Weeks lang={this.props.lang||'CN'}/>
 						<Days year={this.state.year} month={this.state.month} day={this.state.day} setDay={this.handleSetDay.bind(this)}/>
 					</div>
-					<div className="datepicker_time fl" style={this.props.type ==='date'?{display:'none'}:{display:'block'}} >
+					<div className="datepicker-time fl" style={this.props.type ==='date'?{display:'none'}:{display:'block'}} >
 						<Time step={this.props.step} timeStart={this.props.timeStart} timeEnd={this.props.timeEnd} setTime={this.handleSetTime.bind(this)} />
 					</div>
 				</div>

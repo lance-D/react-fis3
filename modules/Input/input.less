@@ -1,7 +1,7 @@
 @import  "../common/variables.less";
 @import  "../common/vender.less";
 
-.input_item {
+.input-item {
 	position: relative;
 	display: inline-block;
 	line-height: 1;
@@ -14,7 +14,7 @@
 		z-index: 2
 	}
 }
-.input_label {
+.input-label {
 	display: inline-block;
 	margin-bottom: 18px;
 }
@@ -36,18 +36,18 @@
     &:focus {
         border-color: @green;
     }
-    &_warning {
+    &-warning {
         border-color: @red;
     }
 }
-.input_group {
+.input-group {
 	position: relative;
 	overflow: hidden;
     &:after {
         clear: both;
         _overflow: hidden;
     }
-    .input_item {
+    .input-item {
         float: left;
 		.input {
 			border-top-right-radius: 0;

@@ -42,7 +42,7 @@ class Radiogroup extends React.Component {
 		}
   	}
 	render(){
-		let className = classnames(this.props.className,'radio_group');
+		let className = classnames(this.props.className,'radio-group');
 		let items = this.state.data.map((item,i) => {
 			return (
 				<Radio key = {i}
