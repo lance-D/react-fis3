@@ -3,7 +3,7 @@
 import React from "react";
 import ReactDOM from 'react-dom';
 
-import { Button,Radiogroup,Checkbox,Checkboxgroup,Icon,Input,Inputgroup,Select,Datepicker,Confirm,Modal} from  './main'
+import { Button,Radiogroup,Checkbox,Checkboxgroup,Icon,Input,Inputgroup,Select,Datepicker,Confirm,Modal,Textarea} from  './main'
 let handleClick =  function(){
 	// handle click
 	console.log('回调函数');
@@ -85,6 +85,12 @@ ReactDOM.render(
 			<Inputgroup type="search" text=' 搜索' icon="search" width="400px" placeholder="请输入搜索的内容"/>
 			<h4>搜索框只读</h4>
 			<Inputgroup type="paste" text='复制链接' value="https://easy.lagou.com/pub/resume.htm?pubCode=e90cde5ba48d1af6990b880bef0857c6" width="600px" readOnly placeholder="请输入搜索的内容" onClick={handlePaste} />
+		</div>
+		<h2>自增Textarea</h2>
+		<div className="item">
+			<Textarea width="400px" placeholder="输入点什么" />
+			<h4>限制输入字数</h4>
+			<Textarea width="400px" maxlength="20" placeholder="输入点什么"/>
 		</div>
 		<h2>下拉框</h2>
 		<div className="item clearfix">

@@ -13,6 +13,6 @@ import Select from "./Select/select";
 import Datepicker from "./Datepicker/datepicker";
 import Confirm from "./Confirm/confirm";
 import Modal from "./Modal/modal";
+import Textarea from './Textarea/textarea';
 
-
-export { Button,Radiogroup,Checkbox,Checkboxgroup,Icon,Input,Inputgroup,Select,Datepicker,Confirm,Modal};
+export { Button,Radiogroup,Checkbox,Checkboxgroup,Icon,Input,Inputgroup,Select,Datepicker,Confirm,Modal,Textarea};

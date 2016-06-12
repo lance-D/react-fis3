@@ -1,0 +1,36 @@
+@import "../common/variables.less";
+
+.textarea-box {
+	position: relative;
+	padding: 10px;
+	border: 1px solid #eee;
+	cursor: text;
+	border-radius: 2px;
+	&.warning {
+		border-color: @red !important;
+	}
+	textarea {
+		width: 100%;
+		height: 25px;
+		display: block;
+		border: none;
+		outline: none;
+		resize:none;
+		background-color: transparent;
+		overflow: hidden;
+		font-size: @fs-14;
+		line-height: 25px;
+	}
+	.word-limit {
+		position: absolute;
+		right: 0;
+		bottom: -25px;
+		display: inline-block;
+		text-align: center;
+		font-size: @fs-14;
+		em {
+			color: @red;
+			font-weight: bold;
+		}
+	}
+}
