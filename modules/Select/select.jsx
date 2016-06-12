@@ -28,13 +28,17 @@ class Select extends React.Component {
 	componentWillMount(){
 		let defaultValue = this.props.defaultValue;
 		let selectedArr = this.state.selectedArr;
-		if(!this.props.mult && !contain(selectedArr,defaultValue)){
+		if(!this.props.mult && !contain(selectedArr,defaultValue) && defaultValue){
 			selectedArr.push(defaultValue);
 		}
 	}
 	componentDidMount(){
 		let _this = this,
 			selectEle = _this.refs.select;
+			this.listenerClick(selectEle);
+	}
+	listenerClick(selectEle) {
+		let _this = this;
 		document.addEventListener('click',function(e){
 			e.stopPropagation();
 			let currEle = e.target;
@@ -43,7 +47,9 @@ class Select extends React.Component {
 			}
 		});
 	}
-
+	componentWillUnmount() {
+		document.removeEventListener('click',this.listenerClick)
+	}
 	show(){
 		this.setState({show:true})
 	}
@@ -79,7 +85,7 @@ class Select extends React.Component {
 	 * 点击下拉菜单项 关闭 菜单
 	 */
 	handleSelect(i,e){
-		let text = e.currentTarget.innerText;
+		let text = e.currentTarget.innerText||e.currentTarget.textContent;
 		let selectMenu = e.currentTarget.parentElement;
 		let selectedArr = this.state.selectedArr;
 		if(this.props.readOnly){

@@ -3,7 +3,7 @@
 
 .input-item {
 	position: relative;
-	display: inline-block;
+	display: block;
 	line-height: 1;
 	font-size: @fs-14;
 	color: @fc-5;
@@ -13,32 +13,41 @@
 		top: 18px;
 		z-index: 2
 	}
-}
-.input-label {
-	display: inline-block;
-	margin-bottom: 18px;
-}
-.input {
-    position: relative;
-	font-size: @fs-14;
-	line-height: @input-lh;
-	height: @input-h;
-	width: 100%;
-    z-index: 1;
-    padding-right: 13px;
-    padding-left: 13px;
-    vertical-align: middle;
-    color: #333;
-	border: 1px solid @input-border-color;
-    border-radius: 2px;
-	background-color: @white;
-    outline: 0;
-    &:focus {
-        border-color: @green;
-    }
-    &-warning {
-        border-color: @red;
-    }
+	.input-label {
+		display: inline-block;
+		margin-bottom: 18px;
+	}
+	&.horizontal {
+		.input-label {
+			width: 56px;
+			text-align: right;
+			margin-bottom: 0;
+			margin-right: 14px;
+			vertical-align: middle;
+		}
+		.input {
+			width: auto;
+		}
+	}
+	.input {
+		position: relative;
+		font-size: @fs-14;
+		padding: 14px 13px;
+		width: 100%;
+		z-index: 1;
+		vertical-align: middle;
+		color: #333;
+		border: 1px solid @input-border-color;
+		border-radius: 2px;
+		background-color: @white;
+		outline: 0;
+		&:focus {
+			border-color: @green;
+		}
+		&-warning {
+			border-color: @red;
+		}
+	}
 }
 .input-group {
 	position: relative;

@@ -22,7 +22,12 @@ class Input extends React.Component {
 			this.setValue(nextProps.value);
 		}
 	}
-
+	componentDidMount(){
+		let inputDom = this.refs.input;
+		if(this.props.horizontal){
+			inputDom.style.width = parseInt(inputDom.parentNode.style.width) - 70+'px';
+		}
+	}
 	setValue(value){
 		this.setState({value})
 	}
@@ -102,12 +107,13 @@ class Input extends React.Component {
 	}
 
 	render(){
-		let className = classnames(this.props.className,'input-item');
+		let className = classnames(this.props.className,'input-item',this.props.horizontal && 'horizontal');
 		let {style,required,...others} = this.props;
 		return (
-			<label style={this.props.style} className ={className}>
+			<div style={this.props.style} className ={className}>
 				{this.props.text?<span className='input-label'>{this.props.text}</span>:''}
-				<input {...others}
+				<input ref='input' {...others}
+					type={this.props.type === 'password'? 'password' :'text'}
 					className='input'
 					onBlur= {this.handleBlur.bind(this)}
 					onFocus= {this.handleFocus.bind(this)}
@@ -115,7 +121,7 @@ class Input extends React.Component {
 				/>
 				{this.props.icon?<Icon icon={this.props.icon}/>:''}
 				{this.props.children}
-			</label>
+			</div>
 		)
 	}
 }
