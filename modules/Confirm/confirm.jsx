@@ -55,6 +55,9 @@ class Confirm extends React.Component {
 			case 'icon':
 				return (<Icon icon={this.state.btnTpl} onClick={this.show.bind(this)}/>)
 				break;
+			case 'none':
+				return (<span style={{display:'none'}}></span>)
+				break;
 			default:
 				return (<Button className={btnType} text={this.state.btnTpl} onClick={this.show.bind(this)}/>)
 		}
