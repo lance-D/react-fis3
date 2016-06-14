@@ -20,7 +20,7 @@ class Days extends React.Component {
 	handleClick(e){
 		let ele = e.target;
 		removeSiblingsClass(e.target,'active');
-		this.props.setDay(parseInt(ele.innerText));
+		this.props.setDay(parseInt(ele.innerText||ele.textContent));
 	}
 	render(){
 		let monthDays = this.getMonthDays(),

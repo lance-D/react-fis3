@@ -1,16 +1,13 @@
 'use strict';
-
-import {getTipsByType} from "../Utils/lang";
-
-export function afterErrTips(ele,errType){
+export function showErrTips(ele,errType,text){
 	let nextEle = ele.nextElementSibling;
 	if(nextEle && nextEle.className === 'error-tips'){
 		let currType = ele.nextElementSibling.getAttribute('data-type');
-		if(currType !== errType && getTipsByType(currType).index < getTipsByType(errType).index){
-			ele.nextElementSibling.innerHTML = '<em></em>'+getTipsByType(currType).text;
+		if(currType !== errType){
+			ele.nextElementSibling.innerHTML = '<em></em>'+text;
 			ele.nextElementSibling.setAttribute('data-type',currType);
 		}else{
-			ele.nextElementSibling.innerHTML = '<em></em>'+getTipsByType(errType).text;
+			ele.nextElementSibling.innerHTML = '<em></em>'+text;
 			ele.nextElementSibling.setAttribute('data-type',errType);
 		}
 		ele.nextElementSibling.style.maxHeight = '16px';
@@ -18,7 +15,7 @@ export function afterErrTips(ele,errType){
 		let newEle=document.createElement('span');
 		newEle.setAttribute('class','error-tips');
 		newEle.setAttribute('data-type',errType);
-		newEle.innerHTML = '<em></em>'+getTipsByType(errType).text;
+		newEle.innerHTML = '<em></em>'+text;
 		ele.parentNode.appendChild(newEle);
 		newEle.style.maxHeight = '16px';
 	}

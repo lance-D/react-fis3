@@ -50,7 +50,7 @@ class Time extends React.Component {
 	handleClick(i,e){
 		e.stopPropagation();
 		let ele = e.target;
-		this.props.setTime(ele.innerText);
+		this.props.setTime(ele.innerText||ele.textContent);
 	}
 
 	clickUp(e){

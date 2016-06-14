@@ -15,7 +15,7 @@ let handlePaste = function(e){
 }
 
 let hanleSelected = function (e){
-	console.log('select 回调函数,你选择的是:'+e.currentTarget.innerText);
+	console.log('select 回调函数,你选择的是:'+e.currentTarget.innerText||e.currentTarget.textContent);
 }
 
 let handleOK = function (e){
@@ -61,20 +61,20 @@ ReactDOM.render(
 		<h2>输入框</h2>
 		<div className="item">
 			<Input style={{width:"300px"}} placeholder="输入点什么"/>
-			<h4>带label的input</h4>
-			<div className= 'clearfix'>
-				<Input style={{width:"300px"}} text="姓名" placeholder="请输入姓名" className='demo_item fl'/>
-			</div>
+			<h4>带label的input 竖直方向</h4>
+			<Input style={{width:"300px"}} text="姓名" placeholder="请输入姓名" className='demo-item'/>
+			<h4>带label的input 水平方向</h4>
+			<Input style={{width:"300px"}} text="姓名" placeholder="请输入姓名" horizontal/>
+			<Input style={{width:"300px",marginTop:"30px"}} text="用户姓名" placeholder="请输入用户姓名" horizontal/>
 			<h4>带验证的input</h4>
 			<div className= 'clearfix'>
-				<Input text="必填"  className='demo_item fl' placeholder="必填项" required/>
-				<Input type='username' className='demo_item fl' text="用户名" placeholder="请输入正确的用户名"  isValid />
-				<Input type='mail' text="邮箱" className='demo_item fl' placeholder="请输入正确的邮箱"  isValid />
-				<Input type='mail' text="邮箱(必填)" className='demo_item fl' placeholder="请输入正确的邮箱，必填项" required isValid />
-				<Input type='phone' text="手机" className='demo_item fl' placeholder="请输入正确的手机号码"  isValid />
-				<Input type='password' text="密码" className='demo_item fl' placeholder="请输入6-16位密码"  isValid />
+				<Input text="必填" className='demo-item fl' placeholder="必填项" required isValid/>
+				<Input type='username' className='demo-item fl' text="用户名" placeholder="请输入正确的用户名"  isValid />
+				<Input type='mail' text="邮箱" className='demo-item fl' placeholder="请输入正确的邮箱"  isValid />
+				<Input type='mail' text="邮箱(必填)" className='demo-item fl' placeholder="请输入正确的邮箱，必填项" required isValid />
+				<Input type='phone' text="手机" className='demo-item fl' placeholder="请输入正确的手机号码"  isValid />
+				<Input type='password' text="密码" className='demo-item fl' placeholder="请输入6-20位密码"  isValid />
 			</div>
-
 		</div>
 		<h2>输入框组</h2>
 		<div className="item">
@@ -95,18 +95,18 @@ ReactDOM.render(
 		</div>
 		<h2>下拉框</h2>
 		<div className="item clearfix">
-			<Select icon="arrow-down" data={['选项一','选项二','选项三','选项四','选项五','选项六','选项七']} className="demo_item fl" placeholder="单项选择" defaultValue="选项二"/>
-			<Select icon="arrow-down" data={['选项一','选项二','选项三','选项四','选项五','选项六','选项七']} mult className="demo_item fl" placeholder="多项选择" onSelected={hanleSelected}/>
+			<Select icon="arrow-down" data={['选项一','选项二','选项三','选项四','选项五','选项六','选项七']} className="demo-item fl" placeholder="单项选择" defaultValue="选项二"/>
+			<Select icon="arrow-down" data={['选项一','选项二','选项三','选项四','选项五','选项六','选项七']} mult className="demo-item fl" placeholder="多项选择" onSelected={hanleSelected}/>
 		</div>
 		<h2>时间日期选框</h2>
 		<div className="item clearfix">
-			<Datepicker style={{width:"365px"}} type="date"  className="demo_item fl" placeholder="请选择日期"/>
-			<Datepicker style={{width:"365px"}} className="demo_item fl" placeholder="请选择日期时间" step="30" timeStart="9" timeEnd="19" />
+			<Datepicker style={{width:"365px"}} type="date"  className="demo-item fl" placeholder="请选择日期"/>
+			<Datepicker style={{width:"365px"}} className="demo-item fl" placeholder="请选择日期时间" step="30" timeStart="9" timeEnd="19" />
 		</div>
 		<h2>确认框</h2>
 		<div className="item clearfix">
-			<Confirm text="这是一个确认框，确认框带title,触发元素为text(默认)" className="demo_item" title="确认信息" btnTpl="点击弹出确认框" handleOK={handleOK} clickOutClose />
-			<Confirm text="这是一个确认框，确认框但不带标题,修改btnType来触发确认框,如icon，btn" className="demo_item" btnType="icon" btnTpl="candidate" handleOK={handleOK}/>
+			<Confirm text="这是一个确认框，确认框带title,触发元素为text(默认)" className="demo-item" title="确认信息" btnTpl="点击弹出确认框" handleOK={handleOK} clickOutClose />
+			<Confirm text="这是一个确认框，确认框但不带标题,修改btnType来触发确认框,如icon，btn" className="demo-item" btnType="icon" btnTpl="candidate" handleOK={handleOK}/>
 		</div>
 		<h2>模态框</h2>
 		<div className="item clearfix">
@@ -116,8 +116,8 @@ ReactDOM.render(
 		</div>
 		<h2>组件嵌套</h2>
 		<div className="item clearfix">
-			<Confirm className="demo_item" title="确认信息" btnTpl="弹出框(确认框嵌入下拉框)" handleOK={handleOK} >
-				<Select icon="arrow-down" data={['选项一','选项二','选项三','选项四','选项五','选项六','选项七']} className="demo_item" placeholder="单项选择" defaultValue=""/>
+			<Confirm className="demo-item" title="确认信息" btnTpl="弹出框(确认框嵌入下拉框)" handleOK={handleOK} >
+				<Select icon="arrow-down" data={['选项一','选项二','选项三','选项四','选项五','选项六','选项七']} className="demo-item" placeholder="单项选择"/>
 			</Confirm>
 			<Modal title="模态框标题" btnTpl="模态框">
 				<h4>输入框</h4>
@@ -127,9 +127,9 @@ ReactDOM.render(
 			</Modal>
 			<Modal title="模态框标题" btnTpl="模态框2" btnType="green active" style={{marginLeft:"50px"}}>
 				<h4>下拉框组</h4>
-				<Select style={{width:"300px"}} icon="arrow-down" data={['选项一','选项二','选项三','选项四','选项五','选项六','选项七']} placeholder="单项选择" defaultValue=""/>
+				<Select style={{width:"300px"}} icon="arrow-down" data={['选项一','选项二','选项三','选项四','选项五','选项六','选项七']} placeholder="单项选择"/>
 				<h4>时间日期选框</h4>
-				<Datepicker style={{width:"365px"}} type="date" placeholder="请选择日期"/>
+				<Datepicker style={{width:"300px"}} type="date" placeholder="请选择日期"/>
 			</Modal>
 		</div>
 		<h2>添加标签</h2>
