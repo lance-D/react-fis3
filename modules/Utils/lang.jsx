@@ -1,7 +1,7 @@
 'use strict';
 const validation = {
 	tips:{
-		required:		'不能为空',
+		required:		'此项为必填项',
 		isMail:			'请填写正确的邮箱',
 		isPhone:		'请输入正确的手机号码',
 		isPwd:			'用户名或密码错误',
@@ -15,30 +15,10 @@ const validation = {
 	}
 }
 
-let errText = {
+// export const errText = {
 	required:{
 		index:0,
 		text:validation.tips.required
-	},
-	isMail:{
-		index:1,
-		text:validation.tips.isMail
-	},
-	isPhone:{
-		index:1,
-		text:validation.tips.isPhone
-	},
-	isPwd:{
-		index:1,
-		text:validation.tips.isPwd
-	},
-	isUsername:{
-		index:1,
-		text:validation.tips.isUsername
-	},
-	isValiCode:{
-		index:1,
-		text:validation.tips.isValiCode
 	},
 	noUsername:{
 		index:1,
@@ -59,17 +39,29 @@ let errText = {
 	noValiCode:{
 		index:1,
 		text:validation.tips.noValiCode
+	},
+	isMail:{
+		index:2,
+		text:validation.tips.isMail
+	},
+	isPhone:{
+		index:2,
+		text:validation.tips.isPhone
+	},
+	isPwd:{
+		index:2,
+		text:validation.tips.isPwd
+	},
+	isUsername:{
+		index:2,
+		text:validation.tips.isUsername
+	},
+	isValiCode:{
+		index:2,
+		text:validation.tips.isValiCode
 	}
+
 };
-
-
-export function getTipsByType(type){
-	return errText[type];
-}
-export function setTipsByType(type,item,value){
-	errText[type][item] = value;
-}
-
 
 export const dateEN = {
 	months: [

@@ -62,25 +62,19 @@ ReactDOM.render(
 		<div className="item">
 			<Input style={{width:"300px"}} placeholder="输入点什么"/>
 			<h4>带label的input 竖直方向</h4>
-			<div className= 'clearfix'>
-				<Input style={{width:"300px"}} text="姓名" placeholder="请输入姓名" className='demo-item fl'/>
-
-			</div>
+			<Input style={{width:"300px"}} text="姓名" placeholder="请输入姓名" className='demo-item'/>
 			<h4>带label的input 水平方向</h4>
-			<div className= 'clearfix'>
-				<Input style={{width:"300px"}} text="姓名" placeholder="请输入姓名" horizontal/>
-				<Input style={{width:"300px",marginTop:"30px"}} text="用户姓名" placeholder="请输入用户姓名" horizontal/>
-			</div>
+			<Input style={{width:"300px"}} text="姓名" placeholder="请输入姓名" horizontal/>
+			<Input style={{width:"300px",marginTop:"30px"}} text="用户姓名" placeholder="请输入用户姓名" horizontal/>
 			<h4>带验证的input</h4>
 			<div className= 'clearfix'>
-				<Input text="必填"  className='demo-item fl' placeholder="必填项" required/>
+				<Input text="必填"  className='demo-item fl' placeholder="必填项" required requiredErrMsg='1412425'/>
 				<Input type='username' className='demo-item fl' text="用户名" placeholder="请输入正确的用户名"  isValid />
 				<Input type='mail' text="邮箱" className='demo-item fl' placeholder="请输入正确的邮箱"  isValid />
 				<Input type='mail' text="邮箱(必填)" className='demo-item fl' placeholder="请输入正确的邮箱，必填项" required isValid />
 				<Input type='phone' text="手机" className='demo-item fl' placeholder="请输入正确的手机号码"  isValid />
 				<Input type='password' text="密码" className='demo-item fl' placeholder="请输入6-16位密码"  isValid />
 			</div>
-
 		</div>
 		<h2>输入框组</h2>
 		<div className="item">
