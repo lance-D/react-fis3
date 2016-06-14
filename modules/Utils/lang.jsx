@@ -1,67 +1,14 @@
 'use strict';
-const validation = {
+export const validation = {
 	tips:{
 		required:		'此项为必填项',
-		isMail:			'请填写正确的邮箱',
-		isPhone:		'请输入正确的手机号码',
-		isPwd:			'用户名或密码错误',
-		isUsername:		'用户名或密码错误',
-		isValiCode:		'验证码错误',
-		noUsername:		'请输入用户名',
-		noPwd:			'请填写密码',
-		noMail:			'请填写邮箱',
-		noPhone:		'请填写手机号',
-		noValiCode:		'请输入验证码'
+		mail:			'请填写正确的邮箱',
+		phone:			'请输入正确的手机号码',
+		password:		'用户名或密码错误',
+		alpha:			'只能输入字母',
+		alphanum:		'只能输入字母和数字'
 	}
 }
-
-// export const errText = {
-	required:{
-		index:0,
-		text:validation.tips.required
-	},
-	noUsername:{
-		index:1,
-		text:validation.tips.noUsername
-	},
-	noPwd:{
-		index:1,
-		text:validation.tips.noPwd
-	},
-	noMail:{
-		index:1,
-		text:validation.tips.noMail
-	},
-	noPhone:{
-		index:1,
-		text:validation.tips.noPhone
-	},
-	noValiCode:{
-		index:1,
-		text:validation.tips.noValiCode
-	},
-	isMail:{
-		index:2,
-		text:validation.tips.isMail
-	},
-	isPhone:{
-		index:2,
-		text:validation.tips.isPhone
-	},
-	isPwd:{
-		index:2,
-		text:validation.tips.isPwd
-	},
-	isUsername:{
-		index:2,
-		text:validation.tips.isUsername
-	},
-	isValiCode:{
-		index:2,
-		text:validation.tips.isValiCode
-	}
-
-};
 
 export const dateEN = {
 	months: [
