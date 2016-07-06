@@ -23,7 +23,6 @@
   "dependencies": {
     "classnames": "^2.2.3",
     "fis-parser-less": "^0.1.3",
-    "fis-postprocessor-velocity": "0.0.5",
     "react": "^15.1.0",
     "react-dom": "^15.1.0",
     "react-redux": "^4.4.5",
