@@ -88,7 +88,7 @@ class Confirm extends React.Component {
 
 Confirm.propTypes = {
 	text:PropTypes.string,
-	btnTpl:PropTypes.string.isRequired,
+	btnTpl:PropTypes.string,
 	btnType:PropTypes.string,
 	clickOutClose:PropTypes.bool,
 	style:PropTypes.object,

@@ -6,7 +6,7 @@ import classnames from "classnames";
 import Icon from "../Icon/icon";
 import {formatData} from "../Utils/array";
 
-import Confirm from "./Confirm/confirm";
+import Confirm from "../Confirm/confirm";
 
 class Tags extends React.Component {
   constructor(props) {
