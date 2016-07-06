@@ -36,6 +36,26 @@ class Input extends React.Component {
 	}
 
 	/**
+	 * 是否是必填项
+	 */
+	// isRequired(ele){
+	// 	if(ele.value.trim().length === 0){
+	// 		this.showErrTips(ele,'required')
+	// 		setTipsByType('required','index',0);
+	// 	}else{
+	// 		setTipsByType('required','index',1);
+	// 	}
+	// }
+
+	/**
+	 * 显示、创建 错误提示，并将输入框变红
+	 */
+	// showErrTips(ele,type){
+	// 	afterErrTips(ele,type);
+	// 	addClass(ele,'input-warning');
+	// }
+
+	/**
 	 * 隐藏错误提示，并将输入框重置
 	 */
 	hideErrTips(ele){
@@ -79,6 +99,7 @@ class Input extends React.Component {
 	}
 
 	handleFocus(e){
+		e.stopPropagation();
 		let _ele = e.currentTarget;
 		this.hideErrTips(_ele);
 	}
@@ -92,7 +113,7 @@ class Input extends React.Component {
 		let className = classnames(this.props.className,'input-item',this.props.horizontal && 'horizontal');
 		let {style,required,...others} = this.props;
 		return (
-			<div style={this.props.style} className ={className}>
+			<label style={this.props.style} className ={className}>
 				{this.props.text?<span className='input-label'>{this.props.text}</span>:''}
 				<input ref='input' {...others}
 					type={this.props.type === 'password' ? 'password' : 'text'}
@@ -103,7 +124,7 @@ class Input extends React.Component {
 				/>
 				{this.props.icon?<Icon icon={this.props.icon}/>:''}
 				{this.props.children}
-			</div>
+			</label>
 		)
 	}
 }
