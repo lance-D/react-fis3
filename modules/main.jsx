@@ -15,5 +15,6 @@ import Confirm from "./Confirm/confirm";
 import Modal from "./Modal/modal";
 import Tags from "./Tags/tags";
 import Textarea from './Textarea/textarea';
+import Notification from './Notification/notification';
 
-export { Button,Radiogroup,Checkbox,Checkboxgroup,Icon,Input,Inputgroup,Select,Datepicker,Confirm,Modal,Tags,Textarea};
+export { Button,Radiogroup,Checkbox,Checkboxgroup,Icon,Input,Inputgroup,Select,Datepicker,Confirm,Modal,Tags,Textarea,Notification};

@@ -1,0 +1,138 @@
+
+@import "../common/variables.less";
+@import "../common/vender.less";
+
+.notification{
+	position: fixed;
+	z-index: 999;
+	width: @notification-width;
+	margin-right: 24px;
+	&-notice {
+		position: relative;
+		border: 1px solid #d9d9d9;
+		border-radius: 2px;
+		padding: 15px;
+		background-color: #fff;
+		margin-bottom: 10px;
+		overflow: hidden;
+		.box-shadow(0 1px 8px rgba(100, 100, 100, .2));
+		&-close {
+			position: absolute;
+			right: 8px;
+			top: 8px;
+			color: #000;
+			cursor: pointer;
+			outline: none;
+			font-size: 16px;
+			line-height: 1;
+			text-shadow: 0 1px 0 #fff;
+			filter: alpha(opacity=20);
+			opacity: .2;
+			text-decoration: none;
+		}
+		&-close-x:after {
+			content: '×';
+		}
+		&-close:hover {
+			opacity: 1;
+			filter: alpha(opacity=100);
+			color: #333;
+			text-decoration: none;
+		}
+	}
+	.notify-icon > i {
+		position: absolute;
+		font-size: 30px;
+		left: 15px;
+		top:50%;
+		margin-top: -15px;
+	}
+	.notify-title {
+		margin-bottom: 10px;
+		font-size: @fs-16;
+		line-height: 1.5;
+		max-width: 265px;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		overflow: hidden;
+	}
+	.notify-message {
+		font-size: @fs-14;
+		color:@fc-5;
+		line-height: 1.2;
+		max-width: 265px;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		overflow: hidden;
+	}
+	.notify-icon .notify-message,.notify-icon .notify-title {
+		margin-left: 45px;
+		max-width: 220px;
+	}
+	.icon-success {
+		color: @green;
+	}
+	.icon-info {
+		color: #179fe6;
+	}
+	.icon-warning {
+		color: @red;
+	}
+	.icon-error {
+		color: #ff3100;
+	}
+	.notification-fade-effect {
+	    animation-duration: 0.24s;
+	    animation-fill-mode: both;
+	    animation-timing-function: @ease-in-out;
+	}
+	&-fade-enter,&-fade-appear {
+	    opacity: 0;
+	    .notification-fade-effect();
+	    animation-play-state: paused;
+	}
+
+  	&-fade-leave {
+	    .notification-fade-effect();
+	    animation-duration: 0.2s;
+	    animation-play-state: paused;
+  	}
+
+  	&-fade-enter&-fade-enter-active,
+ 	&-fade-appear&-fade-appear-active {
+	    animation-name: NotificationFadeIn;
+	    animation-play-state: running;
+  	}
+
+  	&-fade-leave&-fade-leave-active {
+    	animation-name: NotificationFadeOut;
+    	animation-play-state: running;
+  	}
+}
+@keyframes NotificationFadeIn {
+  0% {
+    opacity: 0;
+    left: @notification-width;
+  }
+  100% {
+    left: 0;
+    opacity: 1;
+  }
+}
+
+@keyframes NotificationFadeOut {
+	0% {
+		opacity: 1;
+		margin-bottom: 10px;
+		padding-top: 15px;
+		padding-bottom: 15px;
+		max-height: 100px;
+	}
+	100% {
+		opacity: 0;
+		margin-bottom: 0;
+		padding-top: 0;
+		padding-bottom: 0;
+		max-height: 0;
+	}
+}

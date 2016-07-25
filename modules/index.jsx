@@ -3,7 +3,7 @@
 import React from "react";
 import ReactDOM from 'react-dom';
 
-import { Button,Radiogroup,Checkbox,Checkboxgroup,Icon,Input,Inputgroup,Select,Datepicker,Confirm,Modal,Tags,Textarea} from  './main'
+import { Button,Radiogroup,Checkbox,Checkboxgroup,Icon,Input,Inputgroup,Select,Datepicker,Confirm,Modal,Tags,Textarea,Notification} from  './main'
 
 let handleClick =  function(){
 	// handle click
@@ -22,6 +22,28 @@ let handleOK = function (e){
 	console.log('已确认')
 }
 
+
+const openNotification = function (){
+	const key = `${new Date().getTime()}`;
+	const closeNotify = function (){
+		console.log(key);
+	}
+	Notification.open({
+		title:'标题',
+		message:'ddddddddd',
+		duration: 0,
+		key,
+		onClose:closeNotify
+	});
+
+}
+const openNotificationWithIcon = function() {
+	Notification['warning']({
+		title:'标题',
+		message:'这是一个带图标的通知',
+		duration:0
+	})
+}
 ReactDOM.render(
 	<div className="main">
 		<h2>按钮</h2>
@@ -135,6 +157,11 @@ ReactDOM.render(
 		<h2>添加标签</h2>
 		<div className="item clearfix">
 			<Tags tagArray={['认真','勤奋']}/>
+		</div>
+		<h2>通知</h2>
+		<div className="item clearfix">
+			<span onClick={openNotification}>通知</span>
+			<span onClick={openNotificationWithIcon}>带图标通知</span>
 		</div>
 	</div>,
 	document.getElementById('container')
