@@ -15,7 +15,7 @@ class Button extends React.Component {
 	}
 	render(){
 		let className = classnames('btn',this.props.className);
-		let {...ohters} = this.props;
+		let {text,...ohters} = this.props;
 		return (
 			<button {...ohters} type="button" style={this.props.style}
 					onClick={this.handleClick.bind(this)}

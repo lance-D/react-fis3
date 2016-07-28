@@ -12,7 +12,7 @@
 - `Messags.error(content,duration,onClose)`
 - `Messags.info(content,duration,onClose)`
 - `Messags.warning(content,duration,onClose)`
-
+- `Messags.destroy()`
 
 #### 用法
 

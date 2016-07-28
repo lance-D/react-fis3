@@ -118,8 +118,8 @@ class Input extends React.Component {
 		}
 	}
 	render(){
+		let {style,required,isChanged,horizontal,btmLine,placeholder,text,isValid,...others} = this.props;
 		let className = classnames('input-item',this.props.horizontal && 'horizontal',this.props.className,this.props.btmLine && 'bottom-line');
-		let {style,required,...others} = this.props;
 		return (
 			<div style={this.props.style} className ={className}>
 				{this.props.text?<span className='input-label'>{this.props.text}</span>:''}

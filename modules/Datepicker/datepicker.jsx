@@ -130,7 +130,7 @@ class Datepicker extends React.Component {
 		let _month = this.state.currDate.getMonth()+1;
 		let _day = this.state.currDate.getDate();
 		let className = classnames('datepicker',this.props.className,this.state.show?'active':'');
-		let {...ohter} = this.props;
+		let {timeStart,timeEnd,...ohter} = this.props;
 		return (
 			<div ref='datepicker' className={className} style={this.props.style}>
 				<Input {...ohter} ref='datepickerText' placeholder={this.props.placeholder} icon={this.props.icon || "re-interview"} text={this.props.text} btmLine={this.props.btmLine && true} horizontal={this.props.horizontal && true} value={this.state.value} onClick={this.handleClick.bind(this)} readOnly/>
