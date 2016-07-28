@@ -1,0 +1,97 @@
+
+@import "../common/variables.less";
+@import "../common/vender.less";
+
+.message-box {
+	position: fixed;
+	z-index: 999;
+	width: 100%;
+	top: 16px;
+	left: 0;
+	font-size: 14px;
+	&-notice {
+		width: auto;
+	    vertical-align: middle;
+	    position: absolute;
+	    left: 50%;
+	}
+	&-notice-content {
+		position: relative;
+		right: 50%;
+		padding: 6px 16px;
+		border-radius: 2px;
+		border: 1px solid #d9d9d9;
+		.box-shadow(0 1px 8px rgba(100, 100, 100, .2));
+		background: #fff;
+		display: block;
+	}
+	i {
+		display: inline-block;
+		vertical-align: -1px;
+		margin-right: 5px;
+	}
+	.icon-success {
+		color: @green;
+	}
+	.icon-info {
+		color: #179fe6;
+	}
+	.icon-warning {
+		color: @red;
+	}
+	.icon-error {
+		color: #ff3100;
+	}
+	.message-fade-effect {
+	    animation-duration: 0.15s;
+	    animation-fill-mode: both;
+	    animation-timing-function: @ease-in-circ;
+	}
+	&-fade-enter,&-fade-appear {
+	    opacity: 0;
+	    .message-fade-effect();
+	    animation-play-state: paused;
+	}
+
+  	&-fade-leave {
+	    .message-fade-effect();
+	    animation-duration: 0.15s;
+	    animation-play-state: paused;
+  	}
+
+  	&-fade-enter&-fade-enter-active,
+ 	&-fade-appear&-fade-appear-active {
+	    animation-name: moveUpIn;
+	    animation-play-state: running;
+  	}
+
+  	&-fade-leave&-fade-leave-active {
+    	animation-name: moveUpOut;
+    	animation-play-state: running;
+  	}
+}
+@keyframes moveUpIn {
+  0% {
+    transform-origin: 0 0;
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform-origin: 0 0;
+    transform: translateY(0%);
+    opacity: 1;
+  }
+}
+
+@keyframes moveUpOut {
+  0% {
+    transform-origin: 0 0;
+    transform: translateY(0%);
+    opacity: 1;
+  }
+  100% {
+    transform-origin: 0 0;
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+}

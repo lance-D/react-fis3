@@ -100,16 +100,16 @@
 
   	&-fade-enter&-fade-enter-active,
  	&-fade-appear&-fade-appear-active {
-	    animation-name: NotificationFadeIn;
+	    animation-name: fadeInFromLeft;
 	    animation-play-state: running;
   	}
 
   	&-fade-leave&-fade-leave-active {
-    	animation-name: NotificationFadeOut;
+    	animation-name: fadeOutFromLeft;
     	animation-play-state: running;
   	}
 }
-@keyframes NotificationFadeIn {
+@keyframes fadeInFromLeft {
   0% {
     opacity: 0;
     left: @notification-width;
@@ -120,7 +120,7 @@
   }
 }
 
-@keyframes NotificationFadeOut {
+@keyframes fadeOutFromLeft {
 	0% {
 		opacity: 1;
 		margin-bottom: 10px;

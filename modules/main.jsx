@@ -16,5 +16,6 @@ import Modal from "./Modal/modal";
 import Tags from "./Tags/tags";
 import Textarea from './Textarea/textarea';
 import Notification from './Notification/notification';
+import Messages from './Message/message';
 
-export { Button,Radiogroup,Checkbox,Checkboxgroup,Icon,Input,Inputgroup,Select,Datepicker,Confirm,Modal,Tags,Textarea,Notification};
+export { Button,Radiogroup,Checkbox,Checkboxgroup,Icon,Input,Inputgroup,Select,Datepicker,Confirm,Modal,Tags,Textarea,Notification,Messages};

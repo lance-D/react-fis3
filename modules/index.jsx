@@ -3,7 +3,7 @@
 import React from "react";
 import ReactDOM from 'react-dom';
 
-import { Button,Radiogroup,Checkbox,Checkboxgroup,Icon,Input,Inputgroup,Select,Datepicker,Confirm,Modal,Tags,Textarea,Notification} from  './main'
+import { Button,Radiogroup,Checkbox,Checkboxgroup,Icon,Input,Inputgroup,Select,Datepicker,Confirm,Modal,Tags,Textarea,Notification,Messages} from  './main'
 
 let handleClick =  function(){
 	// handle click
@@ -44,6 +44,14 @@ const openNotificationWithIcon = function() {
 		duration:0
 	})
 }
+
+const openMessage = function (){
+	Messages.info('hsagasg')
+}
+const openMessageWithIcon = function(){
+
+}
+
 ReactDOM.render(
 	<div className="main">
 		<h2>按钮</h2>
@@ -160,8 +168,13 @@ ReactDOM.render(
 		</div>
 		<h2>通知</h2>
 		<div className="item clearfix">
-			<span onClick={openNotification}>通知</span>
-			<span onClick={openNotificationWithIcon}>带图标通知</span>
+			<p onClick={openNotification}>通知</p>
+			<p onClick={openNotificationWithIcon}>带图标通知</p>
+		</div>
+		<h2>消息</h2>
+		<div className="item clearfix">
+			<p onClick={openMessage}>消息</p>
+			<p onClick={openMessageWithIcon}>带图标消息</p>
 		</div>
 	</div>,
 	document.getElementById('container')

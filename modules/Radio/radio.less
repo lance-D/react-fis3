@@ -6,18 +6,21 @@
 		display: inline-block;
 		vertical-align: middle;
 		font-size: @fs-14;
+		line-height: 1;
 		margin-right: 30px;
 		color: @fc-3;
-		padding-left: 6px;
 		input {
-			opacity: 0;
+			width: 14px;
+		    opacity: 0;
+		    height: 14px;
+		    margin-right: 5px;
 			& + i {
 				position: absolute;
-				display: inline-block;
-				left: 0;
-				top: 2px;
-				color: @fc-9;
-				vertical-align: middle;
+			    display: inline-block;
+			    left: 0;
+			    top: 0;
+			    color: #999999;
+			    margin-right: 5px;
 			}
 			&:checked + i {
 				color: @green;
