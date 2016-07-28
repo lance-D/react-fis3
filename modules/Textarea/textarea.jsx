@@ -4,11 +4,27 @@ import React from 'react';
 import classname from 'classnames';
 
 export default class Textarea extends React.Component {
-
+	constructor(props){
+		super(props);
+		this.state = {
+			textValueLength:parseInt(this.props.maxlength),
+			value:this.props.value || ''
+		}
+	}
 	resizeTimeout = 0;
 	decreaseDistance = 1; // 删除文本时 高度减小的单位
-	state = {textValueLength:parseInt(this.props.maxlength)} // 输入框初始文本长度
-
+	componentWillReceiveProps(nextProps){
+		if(nextProps.value !== this.state.value) {
+			this.setState({value:nextProps.value})
+		}
+	}
+	shouldComponentUpdate(nextProps,nextState){
+		if(nextState.value !== this.state.value ||  nextState.textValueLength !==  this.state.textValueLength){
+			return true
+		}else{
+			return false
+		}
+	}
 	componentDidMount() {
 	 	const areaDom = this.refs.area;
 	 	areaDom.style.height = `${areaDom.scrollHeight}px`;
@@ -21,6 +37,7 @@ export default class Textarea extends React.Component {
 	resize (){
 		window.clearTimeout(this.resizeTimeout);
 	    this.resizeTimeout = window.setTimeout(() => {
+			this.handleKeyUp();
 	      	this.handleHeight();
 	    }, 50);
 	}
@@ -31,11 +48,12 @@ export default class Textarea extends React.Component {
 	      	window.removeEventListener('resize', this.resize.bind(this));
 	    }
 	}
-	shouldComponentUpdate(nextProps,nextState) {
-		return  this.state.textValueLength !== nextState.textValueLength
-	}
+
 	handleHeight() {
-		const areaDom = this.refs.area;
+		let areaDom = this.refs.area;
+		if(!areaDom){
+			return
+		}
 	 	areaDom.style.height = `${areaDom.scrollHeight}px`;
 	 	while (areaDom.clientHeight >= areaDom.scrollHeight) {
 	      areaDom.style.height = `${areaDom.clientHeight - this.decreaseDistance}px`;
@@ -52,7 +70,7 @@ export default class Textarea extends React.Component {
 			return
 		}
 		let areaDOM = this.refs.area;
-		let textLength = areaDOM.value.replace(/[\r\n]/g,'').trim().length;
+		let textLength = areaDOM.value.length > 0 ? areaDOM.value.replace(/[\r\n]/g,'').trim().length : 0;
 		let maxlength = parseInt(this.props.maxlength);
 		if(maxlength > textLength){
 			this.setState({textValueLength: maxlength-textLength})
@@ -77,7 +95,8 @@ export default class Textarea extends React.Component {
 	handleBlur() {
 		this.refs.area.parentNode.style.borderColor ='#eee';
 	}
-	handleChagne() {
+	handleChagne(e) {
+		this.setState({value:e.target.value});
 		this.handleKeyUp();
 		this.handleHeight();
 		if(this.props.onchange){
@@ -85,23 +104,30 @@ export default class Textarea extends React.Component {
 		}
 	}
 	getValue(){
-		return this.refs.area.value;
+		return this.state.value;
+	}
+	setValue(text){
+		this.setState({value:text})
 	}
 	render (){
 		let className = classname('textarea-box',this.state.textValueLength == 0 && 'warning');
-		let {style,...others} = this.props;
+		let containerClass = classname('textarea-container',this.props.className);
+		let {style,maxlength,text,width,value} = this.props;
 		return (
-			<div className={className} style={{width:this.props.width}} onClick={this.handleClick.bind(this)} >
-				<textarea {...others}
-					style={this.props.style}
-					ref='area'
-					onKeyUp={this.handleKeyUp.bind(this)}
-					onChange={this.handleChagne.bind(this)}
-					onKeydown = {this.handleKeyUp.bind(this)}
-					onBlur={this.handleBlur.bind(this)}
+			<div className={containerClass} style={{width:this.props.width}}>
+				{this.props.text && <span className='textarea-label'>{this.props.text}</span>}
+				<div onClick={this.handleClick.bind(this)}  className={className} >
+					<textarea
+						ref='area'
+						onKeyUp={this.handleKeyUp.bind(this)}
+						onChange={this.handleChagne.bind(this)}
+						onKeyDown = {this.handleKeyUp.bind(this)}
+						onBlur={this.handleBlur.bind(this)}
+						value={this.state.value}
 					>
-				</textarea>
-				{this.props.maxlength && <span className="word-limit">还剩 <em>{this.state.textValueLength}</em> 个字</span>}
+					</textarea>
+				</div>
+				{this.props.maxlength && <span className="word-limit">还可以输入 <em>{this.state.textValueLength}</em> 个字</span>}
 			</div>
 		)
 	}

@@ -1,16 +1,16 @@
 'use strict';
 export function showErrTips(ele,errType,text){
-	let nextEle = ele.nextElementSibling;
-	if(nextEle && nextEle.className === 'error-tips'){
-		let currType = ele.nextElementSibling.getAttribute('data-type');
+	let errTips = ele.parentNode.querySelector('.error-tips');
+	if(errTips){
+		let currType = errTips.getAttribute('data-type');
 		if(currType !== errType){
-			ele.nextElementSibling.innerHTML = '<em></em>'+text;
-			ele.nextElementSibling.setAttribute('data-type',currType);
+			errTips.innerHTML = '<em></em>'+text;
+			errTips.setAttribute('data-type',currType);
 		}else{
-			ele.nextElementSibling.innerHTML = '<em></em>'+text;
-			ele.nextElementSibling.setAttribute('data-type',errType);
+			errTips.innerHTML = '<em></em>'+text;
+			errTips.setAttribute('data-type',errType);
 		}
-		ele.nextElementSibling.style.maxHeight = '16px';
+		errTips.style.maxHeight = '16px';
 	}else{
 		let newEle=document.createElement('span');
 		newEle.setAttribute('class','error-tips');

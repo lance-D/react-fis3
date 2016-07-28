@@ -1,52 +1,61 @@
-@import  "../common/variables.less";
-@import  "../common/vender.less";
+@import "../../static/less/variables.less";
+@import "../../static/less/vender.less";
 
-.tag-item{
-  min-width: 38px;
-  float: left;
-  padding: 0px 20px 2px 9px;
-  border: 1px solid #e5e5e5;
-  border-radius: 20px;
-  margin: 0 10px 10px 0;
-  color: #777777;
-  font-size: 12px;
-  line-height: 22px;
-  .icon-close{
-    height: 10px;
-    width: 9px;
-    padding: 1px 0px 0px 0px;
-    float: right;
-    position: relative;
-    right: -8px;
-    top: 5px;
-    cursor: pointer;
-    .scale(0.8);
-  }
-}
-.add-tag{
-  float: left;
-  display: block;
-  width: 80px;
-  border-radius: 20px;
-  padding: 2px 14px 1px 0px;
-  line-height: 21px;
-  color: #00b38a;
-  font-size: 12px;
-  cursor: pointer;
-}
-.tag-input{
-  width: 60px;
-  float: left;
-  outline: none;
-  font-size: 12px;
-  color: #777;
-  border-radius: 4px;
-  border: 1px solid #e5e5e5;
-  line-height: 20px;
-  height: 22px;
-  margin: 0;
-  padding: 0 4px;
-  &:focus{
-      border: 1px solid #00b38a;
-  }
+.tag-container {
+	margin-bottom: 18px;
+	.tag-item{
+		min-width: 38px;
+		float: left;
+		padding: 0px 20px 2px 9px;
+		border: 1px solid #e5e5e5;
+		border-radius: 20px;
+		margin-right: 10px;
+		color: #777777;
+		font-size: 12px;
+		line-height: 22px;
+		.icon-close{
+			height: 10px;
+			width: 9px;
+			padding: 1px 0px 0px 0px;
+			float: right;
+			position: relative;
+			right: -8px;
+			top: 5px;
+			cursor: pointer;
+			.scale(0.8);
+		}
+	}
+	.add-tag{
+		float: left;
+		display: block;
+		width: 80px;
+		border-radius: 20px;
+		padding: 0 14px 0 0;
+		line-height: 20px;
+		color: #00b38a;
+		font-size: 12px;
+		cursor: pointer;
+		height: 22px;
+	}
+	.tag-input{
+		width: 60px;
+		float: left;
+		outline: none;
+		font-size: 12px;
+		color: #777;
+		border-radius: 4px;
+		border: 1px solid #e5e5e5;
+		line-height: 20px;
+		height: 22px;
+		margin: 0;
+		padding: 0 4px;
+		&:focus{
+			border: 1px solid #00b38a;
+		}
+	}
+	.tag-label {
+		font-size: @fs-14;
+		display: block;
+		margin-bottom: 18px;
+	}
 }

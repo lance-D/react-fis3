@@ -1,5 +1,5 @@
-@import  "../common/variables.less";
-@import  "../common/vender.less";
+@import "../../static/less/variables.less";
+@import "../../static/less/vender.less";
 
 .input-item {
 	position: relative;
@@ -10,12 +10,14 @@
 	i[class^="icon-"] {
 		position: absolute;
 		right: 13px;
-		top: 18px;
-		z-index: 2
+		bottom: 16px;
+		z-index: 2;
+		font-size: @fs-12;
 	}
 	.input-label {
 		display: inline-block;
-		margin-bottom: 18px;
+		margin-bottom: 13px;
+		white-space: nowrap;
 	}
 	&.horizontal {
 		.input-label {
@@ -27,6 +29,21 @@
 		}
 		.input {
 			width: auto;
+		}
+		.error-tips {
+			left: 70px;
+		}
+	}
+	&.bottom-line {
+		.input {
+			border-radius: 0;
+			border:none;
+			border-bottom: 1px solid @border-btm;
+			padding: 14px 0;
+			background-color: transparent;
+			&.warning {
+				border-bottom:1px solid @red;
+			}
 		}
 	}
 	.input {
@@ -44,8 +61,46 @@
 		&:focus {
 			border-color: @green;
 		}
-		&-warning {
+		&.warning {
 			border-color: @red;
+		}
+	}
+}
+.error-tips {
+	position: absolute;
+	left: 0;
+	top: 104%;
+	display: block;
+	color: @red;
+	font-size: @fs-14;
+	line-height: 1;
+	max-height: 0;
+	overflow: hidden;
+	-webkit-transition: max-height .2s ease;
+		 -o-transition: max-height .2s ease;
+			transition: max-height .2s ease;
+	em {
+		position: relative;
+		display: inline-block;
+		width: 16px;
+		height: 16px;
+		line-height: 16px;
+		background-color: @red;
+		color: @white;
+		border-radius: 50%;
+		text-align: center;
+		font-weight: bold;
+		margin-right: 3px;
+		vertical-align: bottom;
+		&::after {
+			position: absolute;
+			content: '!';
+			left: 6px;
+			top: 1px;
+			font-size: @fs-12;
+			color: @white;
+			text-align: center;
+			line-height: 1;
 		}
 	}
 }
@@ -70,4 +125,27 @@
 		border-top-left-radius: 0;
         border-bottom-left-radius: 0;
 	}
+}
+.bottom-line{
+	.input~.dynamic-line{
+		.scaleX(0);
+	}
+	.input:focus~.dynamic-line{
+		.scaleX(1);
+	}
+	.input:focus{
+		border-color: @border-btm;
+	}
+}
+.dynamic-line{
+	width: 100%;
+	background-color: @green;
+	display: block;
+	border-radius: 5px;
+	cursor: pointer;
+	height: 1px;
+	position: relative;
+	top: -1px;
+	.transition(all .5s);
+	z-index: 999;
 }

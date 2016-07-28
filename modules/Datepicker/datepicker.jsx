@@ -11,28 +11,36 @@ import Days from "./days";
 import Time from "./time";
 import {addClass,removeClass,hasClass,isClickInner} from "../Utils/dom";
 import {formatTime} from "../Utils/string";
+import {showErrTips} from "../Utils/errTips";
 
 class Datepicker extends React.Component {
 	constructor(props) {
 		super(props);
-		let currDate = new Date();
 		this.state = {
-			year:currDate.getFullYear(),
-			month:(currDate.getMonth()+1),
-			day:currDate.getDate(),
 			show:false,
-			value:'',
-			selectedDay:currDate.getDate(),
-			selectedTime:''
+			value:this.props.value||'',
+			selectedDay:'',
+			selectedTime:'',
+			currDate: this.props.currDate ? new Date(this.props.currDate) : new Date()
+		}
+	}
+	componentWillReceiveProps (nextProps){
+		if(nextProps.value !== this.state.value) {
+			this.setState({value:nextProps.value})
+		}
+		if(nextProps.currDate !== this.state.currDate) {
+			if(nextProps.currDate){
+				this.setState({currDate:new Date(nextProps.currDate)})
+			}else{
+				this.setState({currDate:new Date()})
+			}
 		}
 	}
 
 	// 处理左右箭头改变年月
 	handleMonthChange(year,month){
-		this.setState({
-			year:year,
-			month:month
-		})
+		let newDate = new Date(year+'/'+month+'/1');
+		this.setState({currDate:newDate})
 	}
 	componentDidMount(){
 		let _this = this;
@@ -42,37 +50,53 @@ class Datepicker extends React.Component {
 				targetEle = _this.refs.datepicker;
 			if(_this.state.show && !isClickInner(ele,targetEle)){
 				_this.hide();
+				_this.refs.datepickerText.validation();
 			}
 
 		})
 	}
+	validation(text){
+		if(this.props.required) {
+			this.refs.datepickerText.validation(text);
+		}
+	}
 	// 设置input的值
 	setDateValue(){
 		let type = this.props.type,format = this.props.format||'yyyy-MM-dd',date;
-		let _month = this.state.month<10?('0'+this.state.month):this.state.month.toString();
+		let _year = this.state.currDate.getFullYear();
+		let _month = this.state.currDate.getMonth()+1<10?('0'+(this.state.currDate.getMonth()+1)):(this.state.currDate.getMonth()+1).toString();
 		let _day = this.state.selectedDay<10?('0'+this.state.selectedDay):this.state.selectedDay.toString();
 		switch (type) {
 			case 'date':
-				date = formatTime(this.state.year.toString()+_month+_day,format);
+				date = formatTime(_year.toString()+_month+_day,format);
 				break;
 			case 'time':
 				date = this.state.selectedTime;
 				break;
 			default:
-				date = formatTime(this.state.year.toString()+_month+_day,format)+' '+this.state.selectedTime
+				date = formatTime(_year.toString()+_month+_day,format)+' '+this.state.selectedTime
 		}
 		this.setState({value:date});
 	}
-
+	getValue(){
+		return this.state.value
+	}
 	hide(){
 		this.setState({show:false})
 	}
-
+	clear(){
+		this.setState({value:''});
+	}
 	show(){
 		this.setState({show:true})
 	}
 	handleClick(e){
 		e.stopPropagation();
+		if(this.props.readOnly){
+			return
+		}
+		// 如果有错误提示信息 则关闭
+		this.refs.datepickerText.hideErrTips();
 		let show = this.state.show;
 		if(!show){
 			this.show();
@@ -102,15 +126,19 @@ class Datepicker extends React.Component {
 		}, 0);
 	}
 	render(){
+		let _year = this.state.currDate.getFullYear();
+		let _month = this.state.currDate.getMonth()+1;
+		let _day = this.state.currDate.getDate();
 		let className = classnames('datepicker',this.props.className,this.state.show?'active':'');
+		let {...ohter} = this.props;
 		return (
 			<div ref='datepicker' className={className} style={this.props.style}>
-				<Input placeholder={this.props.placeholder} icon="arrow-down" value={this.state.value} onClick={this.handleClick.bind(this)} readOnly/>
+				<Input {...ohter} ref='datepickerText' placeholder={this.props.placeholder} icon={this.props.icon || "re-interview"} text={this.props.text} btmLine={this.props.btmLine && true} horizontal={this.props.horizontal && true} value={this.state.value} onClick={this.handleClick.bind(this)} readOnly/>
 				<div className="datepicker-container clearfix">
 					<div className="datepicker-date fl" style={this.props.type ==='time'?{display:'none'}:{display:'block'}}>
-						<Months lang={this.props.lang||'CN'} year={this.state.year} month={this.state.month} onChange={this.handleMonthChange.bind(this)}/>
+						<Months lang={this.props.lang||'CN'} year={_year} month={_month} onChange={this.handleMonthChange.bind(this)}/>
 						<Weeks lang={this.props.lang||'CN'}/>
-						<Days year={this.state.year} month={this.state.month} day={this.state.day} setDay={this.handleSetDay.bind(this)}/>
+						<Days year={_year} month={_month} day={_day} setDay={this.handleSetDay.bind(this)}/>
 					</div>
 					<div className="datepicker-time fl" style={this.props.type ==='date'?{display:'none'}:{display:'block'}} >
 						<Time step={this.props.step} timeStart={this.props.timeStart} timeEnd={this.props.timeEnd} setTime={this.handleSetTime.bind(this)} />

@@ -1,6 +1,6 @@
 'use strict';
 
-import "./common/reset.less";
+import "../static/less/reset.less";
 
 import Button from "./Button/button";
 import Radiogroup from "./Radio/radiogroup";

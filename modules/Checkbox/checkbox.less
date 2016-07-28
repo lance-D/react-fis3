@@ -1,26 +1,26 @@
-@import "../common/variables.less";
+@import "../../static/less/variables.less";
 .checkbox {
 	position: relative;
 	display: block;
 	font-size: @fs-14;
-	line-height: 1;
-	margin-right: 30px;
 	color: @fc-3;
+	line-height: 1;
 	&.inline {
 		display: inline-block;
 	}
 	input {
+		opacity: 0;
 		width: 14px;
 	    opacity: 0;
 	    height: 14px;
 	    margin-right: 5px;
 		& + i {
 			position: absolute;
-		    display: inline-block;
-		    left: 0;
-		    top: 0;
-		    color: #999999;
-		    margin-right: 5px;
+			display: inline-block;
+			left: 0;
+			top: 0;
+			color: @fc-9;
+			margin-right: 5px;
 		}
 		&:checked + i {
 			color: @green;

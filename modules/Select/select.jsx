@@ -6,9 +6,10 @@ import "./select.less";
 import React,{ PropTypes } from "react";
 import classnames from "classnames";
 import Button from "../Button/button";
+import Input from "../Input/input.jsx";
 import Icon from "../Icon/icon";
 import {formatData,contain} from "../Utils/array";
-import {addClass,removeClass,removeSiblingsClass,isClickInner} from "../Utils/dom";
+import {addClass,removeClass,removeSiblingsClass,isClickInner,getCSSAttr} from "../Utils/dom";
 
 
 class Select extends React.Component {
@@ -16,13 +17,18 @@ class Select extends React.Component {
 		super(props);
 		this.state = {
 			show:false,
-			value:this.props.value,
-			selectedArr:[]
+			value:this.props.value||'',
+			selectedArr:[],
+			showErrTips:'',
+			data:this.props.data
 		}
 	}
 	componentWillReceiveProps(nextProps){
 		if(nextProps.value !== this.state.value){
 			this.setState({value:nextProps.value})
+		}
+		if(nextProps.data !== this.state.data){
+			this.setState({data:nextProps.data})
 		}
 	}
 	componentWillMount(){
@@ -36,6 +42,9 @@ class Select extends React.Component {
 		let _this = this,
 			selectEle = _this.refs.select;
 			this.listenerClick(selectEle);
+		if(this.props.horizontal && this.props.text){
+			selectEle.querySelector('.select-container').style.width = parseInt(getCSSAttr(selectEle,'width')) - 70+'px';
+		}
 	}
 	listenerClick(selectEle) {
 		let _this = this;
@@ -51,16 +60,21 @@ class Select extends React.Component {
 		document.removeEventListener('click',this.listenerClick)
 	}
 	show(){
-		this.setState({show:true})
+		this.state.data.length > 0 && this.setState({show:true})
 	}
 	hide(){
 		this.setState({show:false})
 	}
 	/**
-	 * 单击 显示下拉菜单
+	 * 获取焦点 显示下拉菜单
 	 */
-	handleClick(){
-		this.show();
+	handleFocus(e){
+		if(this.state.data.length > 0) {
+			this.show();
+		}
+		if(this.props.filterValue) {
+			this.filterData();
+		}
 	}
 
 	/**
@@ -80,7 +94,21 @@ class Select extends React.Component {
 		}
 		this.setState({selectedArr:newArr});
 	}
-
+	getValue(){
+		return this.props.editable?this.state.value:this.state.selectedArr.toString();
+	}
+	validation(text){
+		if(this.props.editable) {
+			this.refs.selectInput.validation(text)
+		}else{
+			this.setState({showErrTips:true});
+			this.showErrTips(text);
+		}
+		return false
+	}
+	clear(){
+		this.setState({selectedArr:[],value:''})
+	}
 	/**
 	 * 点击下拉菜单项 关闭 菜单
 	 */
@@ -100,38 +128,99 @@ class Select extends React.Component {
 			);
 		}else{
 			selectedArr.length = 0;
+			 if(this.props.editable){
+			 	this.setState({value:text});
+			 }
 			selectedArr.push(text);
 			removeSiblingsClass(e.currentTarget,'active');
 			this.hide();
 			e.stopPropagation();
 		}
 		this.setState({selectedArr:selectedArr});
+		this.setState({showErrTips:false});
 		addClass(e.currentTarget,'active');
 		if(this.props.onSelected){
 			this.props.onSelected(e);
 		}
 	}
-
-
-	render(){
-		let className = classnames('select',this.props.className,this.state.show?'active':''),
-			selectedArr = this.state.selectedArr;
-		let selectItems = formatData(this.props.data).map((item,i) => {
-			return (
-				<li key={i} data-value={item.value} onClick={this.handleSelect.bind(this,i)} className={item.text===this.props.defaultValue?'active':''}>
-					{item.text}
-				</li>
-			)
-		})
+	handleChange(e){
+		this.setState({value:e.target.value});
+	}
+	hanleKeyUp(){
+		this.filterData();
+	}
+	filterData(){
+		let value = this.refs.selectInput.getValue()||'';
+		let filterValue = this.props.filterValue;
+		if(typeof filterValue === 'string' && filterValue.length>0){
+			let arr = [];
+			arr = this.state.data.map((item) => {
+				if(item[filterValue].indexOf(value) > -1) {
+					item['show'] = true
+				}else{
+					item['show'] = false
+				}
+				return item;
+			})
+			this.setState({data:arr});
+		}
+	}
+	showErrTips(text){
 		return (
-			<div ref='select' style={this.props.style} className={className} onClick={this.handleClick.bind(this)}>
-				<Button className='select-btn'>
-					{selectedArr.length>0 ? selectedArr : <span className="placeholder">{this.props.placeholder} </span>} <Icon icon={this.props.icon} />
-				</Button>
-				<ul className='select-menu'>
-					{selectItems}
-				</ul>
-				{this.props.children}
+			<span className='error-tips'><em></em>{text}</span>
+		)
+	}
+	getSelectItems(){
+		if(this.props.filterValue) {
+			return formatData(this.state.data).map((item,i)=>{
+				return (
+					<li key={i} data-value={item[this.props.keyValue || 'value']} style={{display:item.show ? 'block' : 'none'}}
+					onClick={this.handleSelect.bind(this,i)} className={item[this.props.keyText || 'text']===this.props.defaultValue?'active':''}>
+					{item[this.props.keyText || 'text']}
+					</li>
+				)
+			}.bind(this))
+		}else{
+			return formatData(this.state.data).map((item,i)=>{
+				return (
+					<li key={i} data-value={item[this.props.keyValue || 'value']} onClick={this.handleSelect.bind(this,i)} className={item[this.props.keyText || 'text']===this.props.defaultValue?'active':''}>
+					{item[this.props.keyText || 'text']}
+					</li>
+				)
+			}.bind(this))
+		}
+	}
+	render(){
+		let className = classnames('select',this.props.horizontal &&  'horizontal',this.props.className,this.state.show?'active':''),
+			selectedArr = this.state.selectedArr;
+		let selectItems = this.getSelectItems();
+		let btnClass = classnames('select-btn',this.props.btmLine && 'btm-line');
+		return (
+			<div ref='select' style={this.props.style} className={className}>
+				{this.props.text && <span className={'select-label'} >{this.props.text}</span>}
+				<div className='select-container'>
+					{this.props.editable?
+						(<div className={'editable-input'}  >
+							<Input ref="selectInput" btmLine={this.props.btmLine && true}
+									onChange={this.handleChange.bind(this)}
+									placeholder={this.props.placeholder}
+									required={this.props.required} value={this.state.value}
+									icon={this.props.icon || 'arrow-down'}
+									onKeyUp={this.hanleKeyUp.bind(this)}
+									onFocus={this.handleFocus.bind(this)}
+									iconClick={this.clear.bind(this)}
+							/>
+						</div>):
+						(<Button className={btnClass}  onClick={this.show.bind(this)}>
+							{selectedArr.length>0 ? selectedArr : <span className="placeholder">{this.props.placeholder} </span>}
+							<Icon icon={this.props.icon || 'arrow-down'} />
+						</Button>)
+					}
+					<ul className='select-menu'>
+						{selectItems}
+					</ul>
+				</div>
+				{this.state.showErrTips && this.showErrTips()}
 			</div>
 		)
 	}

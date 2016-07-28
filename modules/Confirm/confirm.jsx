@@ -34,6 +34,9 @@ class Confirm extends React.Component {
 	}
 
 	show(){
+		if(this.props.onClick){
+			this.props.onClick()
+		}
 		this.setState({show:true});
 	}
 	hide(){
@@ -43,6 +46,9 @@ class Confirm extends React.Component {
 	clickOutClose(){
 		if(this.state.clickOutClose){
 			this.hide()
+		}
+		if(this.props.clickOutClose && typeof this.props.clickOutCloseCallBack == 'function'){
+			this.props.clickOutCloseCallBack().bind(this);
 		}
 	}
 
@@ -56,7 +62,7 @@ class Confirm extends React.Component {
 				return (<Icon icon={this.state.btnTpl} onClick={this.show.bind(this)}/>)
 				break;
 			case 'none':
-				return (<span style={{display:'none'}}></span>)
+				return;
 				break;
 			default:
 				return (<Button className={btnType} text={this.state.btnTpl} onClick={this.show.bind(this)}/>)
@@ -70,7 +76,6 @@ class Confirm extends React.Component {
 				{confirmBtnHtml}
 				<div className='confirm-mask' style={{display:this.state.show?'block':'none'}} onClick={this.clickOutClose.bind(this)}></div>
 				<div className='confirm' >
-					<Icon icon='close' onClick={this.handleCancel.bind(this)}/>
 					{this.props.title ? <div className='confirm-header'>{this.props.title}</div>:''}
 					<div className='confirm-body'>
 						{this.props.text}

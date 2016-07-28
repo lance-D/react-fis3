@@ -1,0 +1,36 @@
+@import "../../static/less/variables.less";
+@import "../../static/less/vender.less";
+
+.error-message {
+  display: none;
+  color: @red;
+  &.active{
+    display: block;
+    line-height: 14px;
+    margin-bottom: -34px;
+  }
+  em {
+    position: relative;
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    line-height: 16px;
+    background-color: @red;
+    color: @white;
+    border-radius: 50%;
+    text-align: center;
+    font-weight: bold;
+    margin-right: 3px;
+    vertical-align: bottom;
+    &::after {
+      position: absolute;
+      content: '!';
+      left: 6px;
+      top: 1px;
+      font-size: @fs-12;
+      color: @white;
+      text-align: center;
+      line-height: 1;
+    }
+  }
+}

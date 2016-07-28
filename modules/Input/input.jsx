@@ -1,119 +1,127 @@
 'use strict';
 
 import "./input.less";
-import "../common/errtips.less";
 import React,{ PropTypes } from "react";
 import classnames from "classnames";
 import Icon from "../Icon/icon";
 import {regs} from "../Utils/regs";
 import {showErrTips} from "../Utils/errTips";
-import {addClass,removeClass} from "../Utils/dom";
+import {addClass,removeClass,getCSSAttr} from "../Utils/dom";
 import {validation} from "../Utils/lang";
 class Input extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			value: this.props.value,
+			value:this.props.value || '',
 			isChanged: this.props.isChanged
 		}
 	}
-	componentWillReceiveProps (nextProps){
+	componentWillReceiveProps(nextProps){
 		if(nextProps.value !== this.state.value) {
-			this.setValue(nextProps.value);
+			this.setState({value:nextProps.value})
 		}
 	}
 	componentDidMount(){
 		let inputDom = this.refs.input;
-		if(this.props.horizontal){
-			inputDom.style.width = parseInt(inputDom.parentNode.style.width) - 70+'px';
+		if(this.props.horizontal && this.props.text){
+			inputDom.style.width = parseInt(getCSSAttr(inputDom.parentNode,'width')) - 70+'px';
 		}
 	}
-	setValue(value){
-		this.setState({value})
-	}
-	getValue(){
-		return this.state.value
-	}
-
-	/**
-	 * 是否是必填项
-	 */
-	// isRequired(ele){
-	// 	if(ele.value.trim().length === 0){
-	// 		this.showErrTips(ele,'required')
-	// 		setTipsByType('required','index',0);
-	// 	}else{
-	// 		setTipsByType('required','index',1);
-	// 	}
-	// }
-
-	/**
-	 * 显示、创建 错误提示，并将输入框变红
-	 */
-	// showErrTips(ele,type){
-	// 	afterErrTips(ele,type);
-	// 	addClass(ele,'input-warning');
-	// }
 
 	/**
 	 * 隐藏错误提示，并将输入框重置
 	 */
-	hideErrTips(ele){
-		let nextEle = ele.nextElementSibling;
-		if(nextEle && nextEle.className == 'error-tips'){
-			nextEle.style.maxHeight = '0';
-			removeClass(ele,'input-warning')
+	hideErrTips(){
+		let ele = this.refs.input;
+		let hasErrTips = ele.parentNode.querySelector('span.error-tips');
+		if(hasErrTips){
+			hasErrTips.style.maxHeight = '0';
+			removeClass(ele,'warning')
 		}
 	}
 
 	/**
 	 * 验证 type 为 mail，phone，password等输入框，并显示相应错误提示
 	 */
-	validation(ele,type){
+	validation(text){
 		// 验证必填
+		let ele = this.refs.input;
+		let type = this.props.type;
 		let required = this.props.required;
 		let value = ele.value.trim();
 		let reg = regs[type];
 		if(required && (value === undefined || value === null || value.length === 0)) {
-			 this.handleValidte(ele,'required')
+			 this.handleValidte(ele,'required',text)
 		}else {
 			// 验证type对应的规则
 			if(reg && !reg.test(value)) {
-				this.handleValidte(ele,type)
+				this.handleValidte(ele,type,text);
 			}
 		}
 	}
 
-	handleValidte (ele,type){
-		let text = validation.tips[type];
-		showErrTips(ele,type,text);
-		addClass(ele,'input-warning');
+	handleValidte (ele,type,text){
+		let tips = text || validation.tips[type];
+		showErrTips(ele,type,tips);
+		addClass(ele,'warning');
 	}
 
-	handleBlur(e){
-		let _ele = e.currentTarget;
-		let type = this.props.type;
+	handleBlur(){
+		if(this.props.readOnly){
+			return
+		}
 		if(this.state.isChanged){
-			this.props.isValid && this.validation(_ele,type)
+			this.props.isValid && this.validation()
+		}
+		if(this.props.onBlur){
+			this.props.onBlur()
 		}
 	}
 
-	handleFocus(e){
-		e.stopPropagation();
-		let _ele = e.currentTarget;
-		this.hideErrTips(_ele);
+	handleFocus(){
+		if(this.props.readOnly){
+			return
+		}
+		this.hideErrTips();
+		if(this.props.onFocus){
+			this.props.onFocus()
+		}
 	}
 
 	handleChange(e){
+		if(this.props.readOnly){
+			return
+		}
 		e.target.value.length >0 ? this.setState({isChanged:true}):'';
-		this.setState({value:e.target.value})
+		this.setState({value:e.target.value});
+		if(this.props.onChange){
+			this.props.onChange(e)
+		}
 	}
-
+	iconClick(e){
+		if(this.props.iconClick){
+			this.props.iconClick(e)
+		}
+	}
+	setValue(text){
+		this.setState({value:text})
+	}
+	getValue(){
+		return this.state.value
+	}
+	clear(){
+		this.setState({value:''})
+	}
+	hanleKeyUp(){
+		if(this.props.onKeyUp){
+			this.props.onKeyUp()
+		}
+	}
 	render(){
-		let className = classnames(this.props.className,'input-item',this.props.horizontal && 'horizontal');
+		let className = classnames('input-item',this.props.horizontal && 'horizontal',this.props.className,this.props.btmLine && 'bottom-line');
 		let {style,required,...others} = this.props;
 		return (
-			<label style={this.props.style} className ={className}>
+			<div style={this.props.style} className ={className}>
 				{this.props.text?<span className='input-label'>{this.props.text}</span>:''}
 				<input ref='input' {...others}
 					type={this.props.type === 'password' ? 'password' : 'text'}
@@ -121,11 +129,14 @@ class Input extends React.Component {
 					onBlur= {this.handleBlur.bind(this)}
 					onFocus= {this.handleFocus.bind(this)}
 					onChange = {this.handleChange.bind(this)}
+					onKeyUp={this.hanleKeyUp.bind(this)}
+					value = {this.state.value}
 				/>
-				{this.props.icon?<Icon icon={this.props.icon}/>:''}
-				{this.props.children}
-			</label>
+				{this.props.icon ? <Icon icon={this.props.icon} onClick={this.iconClick.bind(this)} />:''}
+				{this.props.btmLine && <span className="dynamic-line"></span>}
+			</div>
 		)
+
 	}
 }
 Input.propTypes = {

@@ -1,0 +1,51 @@
+@import "../../static/less/variables.less";
+
+.table {
+	border-collapse:collapse;
+	width: 100%;
+	tr {
+		height: 55px;
+		border-top: 1px solid @table-cell-border;
+		line-height: 55px;
+		background-color: @white;
+		-webkit-transition: height .3s ease;
+				transition: height .3s ease;
+	}
+	thead tr {
+		background-color: @table-shadow-bg;
+	}
+	tbody tr:nth-child(even){
+		background-color: @table-shadow-bg;
+	}
+	th {
+		position: relative;
+		border:0;
+		line-height: inherit;
+		color: @fc-9;
+		font-size: @fs-14;
+		font-weight: normal;
+		text-align: center;
+		label {
+			position: initial;
+			color: inherit;
+			i {
+				left: 16px;
+				top:19px;
+			}
+		}
+	}
+	td{
+		border:0;
+		line-height: inherit;
+		color: @fc-5;
+		font-size: @fs-14;
+		a {
+			position: relative;
+			color: inherit;
+			display: inline-block;
+			&:hover {
+				color: @green;
+			}
+		}
+	}
+}

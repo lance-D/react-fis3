@@ -1,10 +1,10 @@
-@import "../common/variables.less";
-@import "../common/vender.less";
+@import "../../static/less/variables.less";
+@import "../../static/less/vender.less";
 .datepicker {
 	position: relative;
 	.datepicker-container {
 		position: absolute;
-		left: 0;
+		right: 0;
 		top: 90%;
 		border: 1px solid #e7e7e7;
 		border-radius: 2px;
@@ -62,17 +62,25 @@
 					color: @green;
 				}
 			}
+
 			.btn-left {
-				left:27px;
+				left:45px;
 			}
 			.btn-right {
-				right: 27px;
+				right: 45px;
+			}
+			.double-right {
+				right: 10px;
+			}
+			.double-left {
+				left: 10px;
 			}
 		}
 		.week-container {
 			width: 100%;
 			margin-top: 16px;
 			font-size: 0;
+			line-height: 1;
 			.week-item {
 				width: 100%/7;
 				height: 14px;

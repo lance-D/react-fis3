@@ -1,12 +1,13 @@
 'use strict';
 export const validation = {
 	tips:{
-		required:		'此项为必填项',
+		required:		'您还有未填的信息哟',
 		mail:			'请填写正确的邮箱',
 		phone:			'请输入正确的手机号码',
 		password:		'用户名或密码错误',
 		alpha:			'只能输入字母',
-		alphanum:		'只能输入字母和数字'
+		alphanum:		'只能输入字母和数字',
+		idcard:			'请填写正确的身份证号码'
 	}
 }
 

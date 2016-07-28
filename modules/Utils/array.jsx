@@ -15,7 +15,7 @@ export function formatData (data){
 }
 
 function getArray (arr){
-	if(!arr){
+	if(arr.length === 0){
 		return [];
 	}
 	arr = arr.map(function(item){
@@ -33,7 +33,7 @@ export function contain(arr,item){
 	if(!arr instanceof Array){
 		return false
 	}
-	for(let v of arr){
-		return  v === item?true:false;
+	for(let i in arr){
+		return  arr[i] === item?true:false;
 	}
 };

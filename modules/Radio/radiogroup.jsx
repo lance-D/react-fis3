@@ -10,52 +10,50 @@ class Radiogroup extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			value : this.props.value,
+			value : this.props.value||'',
 			data : formatData(this.props.data)
 		}
 	}
-
 	componentWillReceiveProps (nextProps){
 		if(nextProps.value !== this.state.value) {
-			this.setValue(nextProps.value)
+			this.setState({value:nextProps.value})
 		}
 		if(nextProps.data !== this.state.data){
 			this.setState({ data: formatData(nextProps.data) })
 		}
 	}
-
-	setValue (value){
-		this.setState({value})
-	}
-
 	getValue (){
 		return this.state.value
 	}
 
-	handleChange (value) {
+	handleClick (text) {
 	    if (this.props.readOnly) {
 	      	return;
 	    }
-	    this.setState({ value });
+		this.setState({value:text});
 		if(this.props.onChange){
-			this.props.onChange();
+			this.props.onChange(text);
 		}
   	}
 	render(){
-		let className = classnames(this.props.className,'radio-group');
+		let className = classnames('radio-group',this.props.className);
 		let items = this.state.data.map((item,i) => {
 			return (
 				<Radio key = {i}
 					disabled = {this.props.readOnly}
 					checked = {this.state.value == item.value}
-					onClick = {this.handleChange.bind(this)}
+					onClick = {this.handleClick.bind(this)}
           			value = {item.value}
 					text = {item.text}
 				/>
 			)
 		});
 		return (
-			<div style={this.props.style} className={className}>{items}</div>
+			<div style={this.props.style} className={className}>
+				{this.props.text && <span className='radio-label'>{this.props.text}</span>}
+				{items}
+				{this.props.children}
+			</div>
 		)
 	}
 }

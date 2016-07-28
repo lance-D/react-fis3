@@ -10,41 +10,43 @@ class Checkbox extends React.Component{
 			checked: !!this.props.checked
 		};
 	}
-	componentWillReceiveProps (nextProps){
-		if(nextProps.checked !== this.props.checked){
-			this.setState({checked: nextProps.checked});
-		}
+	shouldComponentUpdate (nextProps,nextState) {
+		return nextState.checked !== this.state.checked
 	}
 	handleChange(e){
 		if(this.props.readOnly){
 			return;
 		}
-		this.setState({
-			checked: e.target.checked
-		});
 		if(this.props.onChange) {
-			this.props.onChange(e.target.checked , this.props.value);
+			this.props.onChange(e);
 		}
+	}
+	handleClick(e){
+		if(this.props.readOnly){
+			return;
+		}
+		var input = e.target.tagName!='LABEL'?e.target.closest('label').querySelector('input'):e.target.querySelector('input');
+		this.setState({
+			checked: input.checked
+		});
 	}
 	getValue(){
 		return this.state.checked ? (this.props.value||true) : false
 	}
-	setValue(){
+	setValue(value){
 		let checked = value === true || value ===1 || value === this.props.value;
 		this.setState({checked});
 	}
 
 	render(){
-		let className = classnames(this.props.inline?'inline':'','checkbox')
+		let className = classnames('checkbox',this.props.inline && 'inline');
 		return (
-			<label style= {this.props.style} className={className} >
-				<input 	type='checkbox'
-						disabled={this.props.readOnly}
-						onChange={this.handleChange.bind(this)}
-						checked= {this.state.checked}
-						value={this.props.value}
+			<label style= {this.props.style} className={className} onClick={this.handleClick.bind(this)}>
+				<input type='checkbox'
+						disabled = {this.props.readOnly}
+						onChange = {this.handleChange.bind(this)}
 						/>
-				<Icon icon={this.state.checked?'checkedbox':'checkbox'} />
+				<Icon icon={this.state.checked ? 'checkedbox':'checkbox'} />
 				{this.props.text}
 				{this.props.children}
 			</label>

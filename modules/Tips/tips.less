@@ -1,0 +1,23 @@
+@import "../../static/less/variables.less";
+@import "../../static/less/vender.less";
+.tips {
+	position: relative;
+	height: @tips-h;
+	line-height: @tips-h;
+	background-color: @tips-bg;
+	border-radius: 2px;
+	font-size:@fs-14;
+	color: @fc-3;
+	margin-top: 10px;
+	padding-left: 10px;
+	overflow: hidden;
+	.transition(height .3s ease-out);
+	.icon-close {
+		position: absolute;
+		right: 10px;
+		top: 8px;
+		font-size: @fs-12 !important;
+		color: #7f7f7f;
+		cursor: pointer;
+	}
+}

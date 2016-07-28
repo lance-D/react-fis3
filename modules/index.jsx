@@ -46,10 +46,9 @@ const openNotificationWithIcon = function() {
 }
 
 const openMessage = function (){
-	Messages.info('hsagasg')
-}
-const openMessageWithIcon = function(){
-
+	Messages.info('hsagasg',3,function(){
+		console.log(111);
+	})
 }
 
 ReactDOM.render(
@@ -155,7 +154,7 @@ ReactDOM.render(
 				<h4>输入框组</h4>
 				<Inputgroup type="search" icon="search" width="400px" placeholder="请输入搜索的内容"/>
 			</Modal>
-			<Modal title="模态框标题" btnTpl="模态框2" btnType="green active" style={{marginLeft:"50px"}}>
+			<Modal title="模态框标题" btnTpl="模态框2" btnType="green active">
 				<h4>下拉框组</h4>
 				<Select style={{width:"300px"}} icon="arrow-down" data={['选项一','选项二','选项三','选项四','选项五','选项六','选项七']} placeholder="单项选择"/>
 				<h4>时间日期选框</h4>
@@ -174,7 +173,6 @@ ReactDOM.render(
 		<h2>消息</h2>
 		<div className="item clearfix">
 			<p onClick={openMessage}>消息</p>
-			<p onClick={openMessageWithIcon}>带图标消息</p>
 		</div>
 	</div>,
 	document.getElementById('container')

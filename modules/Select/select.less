@@ -1,9 +1,45 @@
-@import  "../common/variables.less";
-@import  "../common/vender.less";
+@import "../../static/less/variables.less";
+@import "../../static/less/vender.less";
 
 
 .select {
 	position: relative;
+	font-size: 0;
+	.select-label {
+		display: inline-block;
+		margin-bottom: 18px;
+	}
+	.select-container {
+		position: relative;
+	}
+	&.warning {
+		.select-btn {
+			border-color: @red;
+		}
+		.input-item .input {
+			border-color: @red;
+		}
+	}
+	&.horizontal {
+		.select-label {
+			width: 56px;
+			font-size: 14px;
+			text-align: right;
+			margin-bottom: 0;
+			margin-right: 14px;
+			vertical-align: top;
+		}
+		.select-container {
+			display: inline-block;
+		}
+	}
+	.editable-input{
+	  .input-item{
+		width: 100%;
+		display: inline-block;
+		margin-bottom: 0;
+	  }
+	}
 	.select-btn {
 		position: relative;
 		width: 100%;
@@ -94,6 +130,44 @@
 		}
 		.icon-arrow-down {
 			.rotate(180deg);
+		}
+	}
+	.error-tips {
+		position: absolute;
+		left: 0;
+		top: 104%;
+		display: block;
+		color: @red;
+		font-size: @fs-14;
+		line-height: 1;
+		max-height: 0;
+		overflow: hidden;
+		-webkit-transition: max-height .2s ease;
+			 -o-transition: max-height .2s ease;
+				transition: max-height .2s ease;
+		em {
+			position: relative;
+			display: inline-block;
+			width: 16px;
+			height: 16px;
+			line-height: 16px;
+			background-color: @red;
+			color: @white;
+			border-radius: 50%;
+			text-align: center;
+			font-weight: bold;
+			margin-right: 3px;
+			vertical-align: bottom;
+			&::after {
+				position: absolute;
+				content: '!';
+				left: 6px;
+				top: 1px;
+				font-size: @fs-12;
+				color: @white;
+				text-align: center;
+				line-height: 1;
+			}
 		}
 	}
 }

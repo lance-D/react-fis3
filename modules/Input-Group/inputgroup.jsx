@@ -52,7 +52,7 @@ class Inputgroup extends React.Component {
 	}
 
 	render(){
-		let className = classnames(this.props.className,'input-group');
+		let className = classnames('input-group',this.props.className);
 		return (
 			<div className={className} style={this.props.style}>
 				<Input placeholder={this.props.placeholder}

@@ -1,21 +1,20 @@
-@import "../common/variables.less";
-@import "../common/vender.less";
+@import "../../static/less/variables.less";
+@import "../../static/less/vender.less";
 .btn {
     font-size: @fs-14;
     line-height: @btn-h;
     display: inline-block;
     height: @btn-h;
-    padding: 0 30px;
+    padding: 0 15px;
     text-align: center;
     text-decoration: none;
     color: @gray;
     background-color: @white;
     border: 1px solid @gray;
-    *border: 1px solid transparent; //解决IE 7下1px黑边
     outline: 0;
 	border-radius: 2px;
 	vertical-align: middle;
-    .transition(.05s linear);
+    .transition(background-color .05s linear);
     &:hover, &.active {
         text-decoration: none;
         color: @white;
@@ -38,21 +37,30 @@
 	&.lg {
 		height: @btn-h-lg;
 		line-height: @btn-h-lg;
+		font-size: @fs-16;
 	}
     &.block {
         display: block;
         width: 100%;
         padding: 0;
     }
+	&.disabled {
+		color: @white !important;
+	    border-color: @gray !important;
+	    background-color: @gray !important;
+		pointer-events: none;
+		cursor: not-allowed;
+	}
 	&[disabled]{
-		color: @white;
-	    border-color: @gray;
-	    background-color: @gray;
+		color: @white !important;
+	    border-color: @gray !important;
+	    background-color: @gray !important;
+		pointer-events: none;
 		cursor: not-allowed;
 		&:hover {
-	        color: @white;
-	        border-color: @gray;
-	        background-color: @gray;
+	        color: @white !important;
+	        border-color: @gray !important;
+	        background-color: @gray !important;
 	    }
 	}
 	i[class^="icon"] {
