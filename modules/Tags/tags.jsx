@@ -67,6 +67,7 @@ class Tags extends React.Component {
         <div className="add-tag" style={this.state.isAdd?{display:'none'}:{display:'block'}} onClick={this.addTagShow.bind(this)}>
           <Icon icon='add'/>
           添加标签
+          
         </div>
       	<Confirm text="只能设置十个以内的标签" title="超出限制" btnType="none" ref='confirmPop'/>
         <input style={this.state.isAdd ? {display:'block'}:{display:'none'}} type="text" maxLength="10" placeholder="输入标签" className="tag-input" onKeyPress={this.handleKeyPress.bind(this)} onBlur={this.addTag.bind(this)} value={this.state.value} ref='tagInput'></input>
